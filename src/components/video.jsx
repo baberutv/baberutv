@@ -14,6 +14,7 @@ export default class Video extends PureComponent {
   constructor(...args) {
     super(...args);
     this.hls = null;
+    this.handleVideoClick = this.handleVideoClick.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +40,17 @@ export default class Video extends PureComponent {
     }
   }
 
+  handleVideoClick(event) {
+    event.preventDefault();
+    const { ended, paused } = this.videoElement;
+    if (!paused) {
+      this.videoElement.pause();
+    } else if (!ended) {
+      this.videoElement.play();
+    }
+    return false;
+  }
+
   loadSource(uri) {
     if (this.hls) {
       this.hls.loadSource(uri);
@@ -50,7 +62,13 @@ export default class Video extends PureComponent {
   render() {
     return (
       <div aria-hidden={!this.props.src} className="video">
-        <video autoPlay controls ref={component => (this.videoElement = component)} />
+        <button onClick={this.handleVideoClick} type="button">
+          <video
+            autoPlay
+            controls
+            ref={component => (this.videoElement = component)}
+          />
+        </button>
       </div>
     );
   }
