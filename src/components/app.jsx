@@ -4,26 +4,35 @@ import React, { PropTypes, PureComponent } from 'react';
 import styles from '../styles/app.css';
 import Video from './video';
 
+function getQueryString() {
+  if (typeof location === 'undefined') {
+    return '';
+  }
+  return (location.search || '?').slice(1);
+}
+
 @provideContext({
-  insertCss: PropTypes.func.isRequired
+  insertCss: PropTypes.func.isRequired,
 })
 @withStyles(styles)
 export default class App extends PureComponent {
   static contextTypes = {
-    insertCss: PropTypes.func.isRequired
+    insertCss: PropTypes.func.isRequired,
   };
 
   static displayName = 'App';
 
   state = {
-    videoUri: null
-  }
+    videoUri: null,
+  };
 
-  componentDidMount() {
-    const queryString = (location.search || '?').slice(1);
+  componentWillMount() {
+    const queryString = getQueryString();
     const searchParams = new URLSearchParams(queryString);
     const videoUri = searchParams.get('uri');
-    this.setState({ videoUri });
+    if (videoUri) {
+      this.setState({ videoUri });
+    }
   }
 
   render() {

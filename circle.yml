@@ -1,0 +1,19 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+machine:
+  node:
+    version: 6.9.1
+
+dependencies:
+  cache_directories:
+    - ~/.yarn-cache
+  override:
+    - npm install -g yarn
+    - yarn install
+
+test:
+  override:
+    - yarn test
