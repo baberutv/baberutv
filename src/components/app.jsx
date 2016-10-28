@@ -1,6 +1,7 @@
 import provideContext from 'context-provider/lib/provideContext';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import React, { PropTypes, PureComponent } from 'react';
+import URLSearchParams from 'url-search-params';
 import styles from '../styles/app.css';
 import Video from './video';
 
