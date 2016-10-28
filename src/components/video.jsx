@@ -8,7 +8,7 @@ export default class Video extends PureComponent {
   static displayName = 'Video';
 
   static propTypes = {
-    src: PropTypes.string
+    src: PropTypes.string,
   };
 
   constructor(...args) {
@@ -22,21 +22,28 @@ export default class Video extends PureComponent {
       this.hls = new Hls();
       this.hls.attachMedia(this.videoElement);
     }
+    if (this.props.src) {
+      this.loadSource(this.props.src);
+    }
   }
 
   componentWillReceiveProps({ src: videoUri }) {
     if (videoUri && this.props.src !== videoUri) {
-      if (this.hls) {
-        this.hls.loadSource(videoUri);
-      } else {
-        this.videoElement.src = videoUri;
-      }
+      this.loadSource(videoUri);
     }
   }
 
   componentWillUnmount() {
     if (this.hls) {
       this.hls.destroy();
+    }
+  }
+
+  loadSource(uri) {
+    if (this.hls) {
+      this.hls.loadSource(uri);
+    } else {
+      this.videoElement.src = uri;
     }
   }
 
