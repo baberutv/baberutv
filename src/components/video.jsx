@@ -17,6 +17,9 @@ export default class Video extends PureComponent {
   }
 
   componentDidMount() {
+    if (typeof this.videoElement.playsInline !== 'undefined') {
+      this.videoElement.playsInline = true;
+    }
     const canPlay = this.videoElement.canPlayType('application/vnd.apple.mpegURL');
     if (!['probably', 'maybe'].includes(canPlay) && Hls.isSupported()) {
       this.hls = new Hls();
