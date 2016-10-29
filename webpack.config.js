@@ -4,7 +4,10 @@ const path = require('path');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const pkg = require('./package.json');
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 module.exports = {
+  devtool: process.env.NODE_ENV === 'development' ? 'cheap-module-eval-source-map' : 'cheap-module-source-map',
   entry: path.join(__dirname, 'src', 'client.jsx'),
   module: {
     loaders: [
