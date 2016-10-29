@@ -46,5 +46,5 @@
     "start": "webpack-dev-server",
     "test": "${npm_execpath:-npm} run lint"
   },
-  "version": "0.0.2"
+  "version": "0.0.3"
 }
