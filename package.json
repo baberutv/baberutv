@@ -1,5 +1,8 @@
 {
   "author": "Yamagishi Kazutoshi <ykzts@desire.sh>",
+  "bugs": {
+    "url": "https://github.com/baberutv/baberutv/issues"
+  },
   "dependencies": {
     "classnames": "^2.2.5",
     "context-provider": "^1.0.2",
@@ -33,12 +36,13 @@
     "node": ">= 5.0.0",
     "yarn": ">= 0.16.0"
   },
+  "homepage": "https://baberu.tv/",
   "license": "MIT",
-  "name": "tv",
+  "name": "baberutv",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/ykzts/tv.git"
+    "url": "https://github.com/baberutv/baberutv.git"
   },
   "scripts": {
     "build": "webpack",
