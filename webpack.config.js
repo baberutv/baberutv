@@ -1,5 +1,5 @@
 const BabiliPlugin = require('babili-webpack-plugin');
-const HtmlWebpackPluign = require('html-webpack-plugin');
+const HtmlPluign = require('html-webpack-plugin');
 const path = require('path');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const pkg = require('./package.json');
@@ -31,7 +31,7 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [
-    new HtmlWebpackPluign({
+    new HtmlPluign({
       title: `${pkg.name} (v${pkg.version})`,
     }),
     new DefinePlugin({
