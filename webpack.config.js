@@ -32,6 +32,14 @@ module.exports = {
   },
   plugins: [
     new HtmlPluign({
+      minify: {
+        collapseBooleanAttributes: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true,
+        removeOptionalTags: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+      },
       title: process.env.BABERU_TV_SITE_NAME || `${pkg.name} (v${pkg.version})`,
     }),
     new DefinePlugin({
