@@ -26,7 +26,7 @@ module.exports = {
     ],
   },
   output: {
-    filename: '[name].js?[chunkhash]',
+    filename: process.env.NODE_ENV === 'development' ? '[name].js?[chunkhash]' : '[name].[chunkhash].js',
     path: path.join(__dirname, 'build', 'public'),
     publicPath: '/',
   },
