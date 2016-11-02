@@ -32,7 +32,7 @@ module.exports = {
   },
   plugins: [
     new HtmlPluign({
-      title: `${pkg.name} (v${pkg.version})`,
+      title: process.env.BABERU_TV_SITE_NAME || `${pkg.name} (v${pkg.version})`,
     }),
     new DefinePlugin({
       'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
