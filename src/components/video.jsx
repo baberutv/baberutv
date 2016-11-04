@@ -14,9 +14,11 @@ export default class Video extends PureComponent {
   constructor(...args) {
     super(...args);
     this.hls = null;
+    this.handleBeforeUnload = this.handleBeforeUnload.bind(this);
   }
 
   componentDidMount() {
+    window.addEventListener('beforeunload', this.handleBeforeUnload);
     if (typeof this.videoElement.playsInline !== 'undefined') {
       this.videoElement.playsInline = true;
     }
@@ -40,6 +42,17 @@ export default class Video extends PureComponent {
     if (this.hls) {
       this.hls.destroy();
     }
+    window.removeEventListener('beforeunload', this.handleBeforeUnload);
+  }
+
+  handleBeforeUnload(event) {
+    if (!this.videoElement.paused) {
+      const returnValue = '';
+      event.preventDefault();
+      Object.assign(event, { returnValue });
+      return returnValue;
+    }
+    return undefined;
   }
 
   loadSource(uri) {
