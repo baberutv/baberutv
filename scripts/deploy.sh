@@ -10,7 +10,6 @@ NODE_ENV=production yarn run build
 cd build/public
 cp ../../circle.yml .
 echo baberu.tv > CNAME
-sed -i'' -e 's/src="\//src=\".\//' index.html
 rm -rf .git
 git init .
 git config user.name 'CicleCI'
