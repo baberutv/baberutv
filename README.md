@@ -1,6 +1,6 @@
 # BaberuTV
 
-Television!
+:tv: Television!
 
 ## Requirements
 
