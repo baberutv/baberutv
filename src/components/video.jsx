@@ -25,7 +25,6 @@ export default class Video extends PureComponent {
     const canPlay = this.videoElement.canPlayType('application/vnd.apple.mpegURL');
     if (!['probably', 'maybe'].includes(canPlay) && Hls.isSupported()) {
       this.hls = new Hls();
-      this.hls.attachMedia(this.videoElement);
     }
     if (this.props.src) {
       this.loadSource(this.props.src);
@@ -33,7 +32,7 @@ export default class Video extends PureComponent {
   }
 
   componentWillReceiveProps({ src: videoUri }) {
-    if (videoUri && this.props.src !== videoUri) {
+    if (this.props.src !== videoUri) {
       this.loadSource(videoUri);
     }
   }
@@ -57,15 +56,23 @@ export default class Video extends PureComponent {
 
   loadSource(uri) {
     if (this.hls) {
-      this.hls.loadSource(uri);
+      if (uri) {
+        this.hls.attachMedia(this.videoElement);
+        this.hls.loadSource(uri);
+      } else if (!this.hls.url) {
+        this.hls.destroy();
+      }
     } else {
       this.videoElement.src = uri;
+    }
+    if (!uri) {
+      this.videoElement.pause();
     }
   }
 
   render() {
     return (
-      <div aria-hidden={!this.props.src} className="video">
+      <div className="video">
         <video autoPlay controls ref={component => (this.videoElement = component)} />
       </div>
     );
