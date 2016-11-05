@@ -20,6 +20,6 @@ test:
 
 deployment:
   publish:
-    branch: master
+    tag: /v\d+(\.\d+)*/
     commands:
       - ./scripts/deploy.sh
