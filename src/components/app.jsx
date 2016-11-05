@@ -1,9 +1,11 @@
 import provideContext from 'context-provider/lib/provideContext';
+import dialogStyles from 'dialog-polyfill/dialog-polyfill.css';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import React, { PropTypes, PureComponent } from 'react';
 import URLSearchParams from 'url-search-params';
 import styles from '../styles/app.css';
-import Video from './video';
+import Modal from './modal';
+import Player from './player';
 
 function getQueryString() {
   if (typeof location === 'undefined') {
@@ -15,17 +17,33 @@ function getQueryString() {
 @provideContext({
   insertCss: PropTypes.func.isRequired,
 })
-@withStyles(styles)
+@withStyles(dialogStyles, styles)
 export default class App extends PureComponent {
   static contextTypes = {
     insertCss: PropTypes.func.isRequired,
   };
 
+  static childContextTypes = {
+    setVideo: PropTypes.func.isRequired,
+  };
+
   static displayName = 'App';
+
+  constructor(...args) {
+    super(...args);
+    this.handlePopState = this.handlePopState.bind(this);
+    this.setVideo = this.setVideo.bind(this);
+  }
 
   state = {
     videoUri: null,
   };
+
+  getChildContext() {
+    return {
+      setVideo: this.setVideo,
+    };
+  }
 
   componentWillMount() {
     const queryString = getQueryString();
@@ -36,10 +54,41 @@ export default class App extends PureComponent {
     }
   }
 
+  componentDidMount() {
+    window.addEventListener('popstate', this.handlePopState);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    const { videoUri } = nextState;
+    if (this.state.videoUri !== videoUri) {
+      const currentUri = location.pathname + location.search;
+      const uri = `/${videoUri ? `?uri=${encodeURIComponent(videoUri)}` : ''}`;
+      if (currentUri !== uri) {
+        history.pushState({ videoUri }, document.title, uri);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('popstate', this.handlePopState);
+  }
+
+  setVideo({ uri }) {
+    this.setState({
+      videoUri: uri,
+    });
+  }
+
+  handlePopState({ state }) {
+    const { videoUri = '' } = state || {};
+    this.setState({ videoUri });
+  }
+
   render() {
     return (
       <div className="app">
-        <Video src={this.state.videoUri} />
+        <Player src={this.state.videoUri} />
+        <Modal open={!this.state.videoUri} />
       </div>
     );
   }

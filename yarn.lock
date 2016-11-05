@@ -1212,6 +1212,10 @@ detect-indent@^4.0.0:
   dependencies:
     repeating "^2.0.0"
 
+dialog-polyfill:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/dialog-polyfill/-/dialog-polyfill-0.4.4.tgz#924b5acbf7a587c50de84c174fd5d0f317efa881"
+
 diffie-hellman@^5.0.0:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/diffie-hellman/-/diffie-hellman-5.0.2.tgz#b5835739270cfe26acf632099fded2a07f209e5e"
