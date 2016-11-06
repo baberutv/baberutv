@@ -1,10 +1,10 @@
 import Hls from 'hls.js';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from '../styles/video.css';
 
 @withStyles(styles)
-export default class Video extends PureComponent {
+export default class Video extends Component {
   static displayName = 'Video';
 
   static propTypes = {
@@ -35,6 +35,10 @@ export default class Video extends PureComponent {
     if (this.props.src !== videoUri) {
       this.loadSource(videoUri);
     }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.src !== nextProps.src;
   }
 
   componentWillUnmount() {

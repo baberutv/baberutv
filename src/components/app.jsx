@@ -1,7 +1,7 @@
 import provideContext from 'context-provider/lib/provideContext';
 import dialogStyles from 'dialog-polyfill/dialog-polyfill.css';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import React, { PropTypes, PureComponent } from 'react';
+import React, { Component, PropTypes } from 'react';
 import URLSearchParams from 'url-search-params';
 import styles from '../styles/app.css';
 import Modal from './modal';
@@ -18,7 +18,7 @@ function getQueryString() {
   insertCss: PropTypes.func.isRequired,
 })
 @withStyles(dialogStyles, styles)
-export default class App extends PureComponent {
+export default class App extends Component {
   static contextTypes = {
     insertCss: PropTypes.func.isRequired,
   };
@@ -56,6 +56,10 @@ export default class App extends PureComponent {
 
   componentDidMount() {
     window.addEventListener('popstate', this.handlePopState);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.videoUri !== nextState.videoUri;
   }
 
   componentWillUpdate(nextProps, nextState) {
