@@ -6,7 +6,10 @@
   width: 650px;
 }
 
-.modal::backdrop,
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, .8);
+}
+
 .modal + .backdrop {
   background-color: rgba(0, 0, 0, .8);
 }
