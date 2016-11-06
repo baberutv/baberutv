@@ -23,6 +23,10 @@ module.exports = {
         ],
         test: /\.css$/,
       },
+      {
+        loader: 'handlebars',
+        test: /\.hbs/,
+      },
     ],
   },
   output: {
@@ -40,6 +44,7 @@ module.exports = {
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,
       },
+      template: path.join(__dirname, 'src', 'templates', 'index.hbs'),
       title: process.env.BABERU_TV_SITE_NAME || `${pkg.name} (v${pkg.version})`,
     }),
     new DefinePlugin({
