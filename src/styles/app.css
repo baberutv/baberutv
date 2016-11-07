@@ -1,3 +1,8 @@
 body {
   margin: 0;
 }
+
+abbr {
+  border: none;
+  text-decoration: none;
+}
