@@ -21,8 +21,16 @@
   padding: 0;
 }
 
+.modal datalist fieldset {
+  margin-top: 1rem;
+}
+
 .modal legend {
   display: none;
+}
+
+.modal datalist legend {
+  display: block;
 }
 
 .modal input[type="url"] {
@@ -30,6 +38,15 @@
   display: block;
   font-size: 1rem;
   margin: 0;
+  padding: .25rem;
+  width: 100%;
+}
+
+.modal select {
+  box-sizing: border-box;
+  display: block;
+  font-size: 1rem;
+  margin: .5rem 0 0;
   padding: .25rem;
   width: 100%;
 }

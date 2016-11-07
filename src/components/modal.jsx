@@ -1,6 +1,7 @@
 import dialogPolyfill from 'dialog-polyfill';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import React, { Component, PropTypes } from 'react';
+import database from '../databases/media';
 import styles from '../styles/modal.css';
 
 function handleCancel(event) {
@@ -37,6 +38,7 @@ export default class Modal extends Component {
   state = {
     open: false,
     uri: '',
+    videos: [],
   };
 
   componentDidMount() {
@@ -52,7 +54,7 @@ export default class Modal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
+    if (this.props.open !== nextProps.open) {
       this.setState({
         open: nextProps.open,
       });
@@ -62,7 +64,8 @@ export default class Modal extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
       this.state.uri !== nextState.uri ||
-      this.state.open !== nextState.open
+      this.state.open !== nextState.open ||
+      this.state.videos.length !== nextState.videos.length
     );
   }
 
@@ -90,9 +93,8 @@ export default class Modal extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.context.setVideo({
-      uri: this.state.uri,
-    });
+    const { uri } = this.state;
+    this.context.setVideo({ uri });
     return false;
   }
 
@@ -101,6 +103,9 @@ export default class Modal extends Component {
   }
 
   showModal() {
+    database.videos.orderBy('createdAt').reverse().limit(5).toArray()
+      .then(videos => this.setState({ videos }))
+      .catch(() => {});
     this.dialogElement.showModal();
   }
 
@@ -121,6 +126,7 @@ export default class Modal extends Component {
             </legend>
             <input
               id="video-uri"
+              list="uri-list"
               name="uri"
               onChange={this.handleUriChange}
               placeholder="https://example.com/index.m3u8"
@@ -128,6 +134,24 @@ export default class Modal extends Component {
               value={this.state.uri}
             />
           </fieldset>
+          <datalist id="uri-list">
+            <fieldset>
+              <legend>
+                <label htmlFor="uri-select">URI List</label>
+              </legend>
+              <select
+                id="uri-select"
+                name="uri"
+                onChange={this.handleUriChange}
+                value={this.state.videos.some(video => video.uri === this.state.uri) ? this.state.uri : ''}
+              >
+                {this.state.videos.map(video => video.uri && (
+                  <option key={video.id} label={video.name || video.uri} value={video.uri} />
+                ))}
+                <option label="" value="" />
+              </select>
+            </fieldset>
+          </datalist>
           <menu>
             <button type="submit">Play</button>
           </menu>
