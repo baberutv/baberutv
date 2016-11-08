@@ -22,11 +22,13 @@
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-plugin-transform-class-properties": "^6.18.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-plugin-transform-react-jsx-source": "^6.9.0",
     "babili-webpack-plugin": "^0.0.6",
     "css-loader": "^0.25.0",
+    "enzyme": "^2.5.1",
     "eslint": "^3.8.1",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.0.1",
@@ -36,6 +38,8 @@
     "handlebars": "^4.0.5",
     "handlebars-loader": "^1.4.0",
     "html-webpack-plugin": "^2.24.0",
+    "jest": "^16.0.2",
+    "react-addons-test-utils": "^15.3.2",
     "webpack": "^2.1.0-beta.25",
     "webpack-dev-server": "^2.1.0-beta.9"
   },
@@ -44,6 +48,14 @@
     "yarn": ">= 0.16.0"
   },
   "homepage": "https://baberu.tv/",
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.css$": "<rootDir>/__tests__/__mocks__/styleMock.js"
+    },
+    "testPathIgnorePatterns": [
+      "__tests__/__mocks__/"
+    ]
+  },
   "license": "MIT",
   "name": "baberutv",
   "private": true,
@@ -55,7 +67,8 @@
     "build": "webpack",
     "lint": "eslint --ext js --ext jsx . && flow check",
     "start": "webpack-dev-server",
-    "test": "${npm_execpath:-npm} run lint"
+    "test": "${npm_execpath:-npm} run lint && ${npm_execpath:-npm} run test-only",
+    "test-only": "jest"
   },
   "version": "0.3.0"
 }

@@ -1,0 +1,10 @@
+{
+  "env": {
+    "jest": true
+  },
+  "extends": "../.eslintrc",
+  "root": true,
+  "rules": {
+    "import/no-extraneous-dependencies": "off"
+  }
+}
