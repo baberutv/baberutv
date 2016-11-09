@@ -103,7 +103,7 @@ export default class Modal extends Component {
   }
 
   showModal() {
-    database.videos.orderBy('createdAt').reverse().limit(5).toArray()
+    database.videos.orderBy('createdAt').reverse().limit(15).toArray()
       .then(videos => this.setState({ videos }))
       .catch(() => {});
     this.dialogElement.showModal();
