@@ -70,5 +70,5 @@
     "test": "${npm_execpath:-npm} run lint && ${npm_execpath:-npm} run test-only",
     "test-only": "jest"
   },
-  "version": "0.3.1"
+  "version": "0.3.2"
 }
