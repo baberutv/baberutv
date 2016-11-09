@@ -1,4 +1,4 @@
-# BaberuTV
+# BaberuTV [![(build status)](https://circleci.com/gh/baberutv/baberutv.svg?style=shield)](https://circleci.com/gh/baberutv/baberutv/tree/master)
 
 :tv: Television!
 
