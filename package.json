@@ -26,7 +26,7 @@
     "babel-plugin-transform-flow-strip-types": "^6.18.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-plugin-transform-react-jsx-source": "^6.9.0",
-    "babili-webpack-plugin": "^0.0.6",
+    "babili-webpack-plugin": "^0.0.7",
     "css-loader": "^0.25.0",
     "enzyme": "^2.5.1",
     "eslint": "^3.8.1",
@@ -38,7 +38,7 @@
     "handlebars": "^4.0.5",
     "handlebars-loader": "^1.4.0",
     "html-webpack-plugin": "^2.24.0",
-    "jest": "^16.0.2",
+    "jest": "^17.0.0",
     "react-addons-test-utils": "^15.3.2",
     "webpack": "^2.1.0-beta.25",
     "webpack-dev-server": "^2.1.0-beta.9"
