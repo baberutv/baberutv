@@ -5,6 +5,7 @@ import React, { Component, PropTypes } from 'react';
 import URLSearchParams from 'url-search-params';
 import database from '../databases/media';
 import styles from '../styles/app.css';
+import Header from './header';
 import Modal from './modal';
 import Player from './player';
 
@@ -100,8 +101,11 @@ export default class App extends Component {
   render() {
     return (
       <div className="app">
-        <Player src={this.state.videoUri} />
-        <Modal open={!this.state.videoUri} />
+        <Header videoUri={this.state.videoUri} />
+        <main>
+          <Player src={this.state.videoUri} />
+          <Modal open={!this.state.videoUri} />
+        </main>
       </div>
     );
   }
