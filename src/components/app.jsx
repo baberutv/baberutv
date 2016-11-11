@@ -3,7 +3,6 @@ import dialogStyles from 'dialog-polyfill/dialog-polyfill.css';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import React, { Component, PropTypes } from 'react';
 import URLSearchParams from 'url-search-params';
-import database from '../databases/media';
 import styles from '../styles/app.css';
 import Header from './header';
 import Modal from './modal';
@@ -80,16 +79,8 @@ export default class App extends Component {
   }
 
   setVideo({ uri }) {
-    database.transaction('rw', database.videos, async () => {
-      if (uri && (await database.videos.where('uri').equals(uri).count()) < 1) {
-        await database.videos.add({
-          uri,
-          createdAt: new Date(),
-        });
-      }
-      this.setState({
-        videoUri: uri,
-      });
+    this.setState({
+      videoUri: uri,
     });
   }
 

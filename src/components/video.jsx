@@ -1,6 +1,7 @@
 import Hls from 'hls.js';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import React, { Component, PropTypes } from 'react';
+import database from '../databases/media';
 import styles from '../styles/video.css';
 
 @withStyles(styles)
@@ -15,6 +16,7 @@ export default class Video extends Component {
     super(...args);
     this.hls = null;
     this.handleBeforeUnload = this.handleBeforeUnload.bind(this);
+    this.handleCanPlay = this.handleCanPlay.bind(this);
   }
 
   componentDidMount() {
@@ -58,6 +60,18 @@ export default class Video extends Component {
     return undefined;
   }
 
+  handleCanPlay() {
+    const { src: uri } = this.props;
+    database.transaction('rw', database.videos, async () => {
+      if (uri && (await database.videos.where('uri').equals(uri).count()) < 1) {
+        await database.videos.add({
+          uri,
+          createdAt: new Date(),
+        });
+      }
+    });
+  }
+
   loadSource(uri) {
     if (this.hls) {
       if (uri) {
@@ -77,7 +91,12 @@ export default class Video extends Component {
   render() {
     return (
       <div className="video">
-        <video autoPlay controls ref={component => (this.videoElement = component)} />
+        <video
+          autoPlay
+          controls
+          onCanPlay={this.handleCanPlay}
+          ref={component => (this.videoElement = component)}
+        />
       </div>
     );
   }
