@@ -9,7 +9,12 @@ rm -rf build
 NODE_ENV=production yarn run build
 cd build/public
 cp ../../circle.yml .
-echo baberu.tv > CNAME
+cat <<__EOS | node | tee CNAME
+const { parse: parseURL } = require('url');
+const { homepage: uri } = require('../../package.json');
+const { host } = parseURL(uri);
+console.log(host);
+__EOS
 rm -rf .git
 git init .
 git config user.name 'CicleCI'
