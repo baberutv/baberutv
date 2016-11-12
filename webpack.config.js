@@ -3,6 +3,8 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPluign = require('html-webpack-plugin');
 const path = require('path');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
+const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 const pkg = require('./package.json');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -58,6 +60,8 @@ module.exports = {
       },
     ]),
     ...(process.env.NODE_ENV !== 'development' ? [
+      new DedupePlugin(),
+      new OccurrenceOrderPlugin(),
       new BabiliPlugin(),
     ] : []),
   ],
