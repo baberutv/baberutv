@@ -95,8 +95,8 @@ export default class App extends Component {
         <Header videoUri={this.state.videoUri} />
         <main>
           <Player src={this.state.videoUri} />
-          <Modal open={!this.state.videoUri} />
         </main>
+        <Modal open={!this.state.videoUri} />
       </div>
     );
   }
