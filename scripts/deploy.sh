@@ -16,6 +16,12 @@ git config user.name 'CicleCI'
 git config user.email 'sayhi@circleci.com'
 git remote add origin ${REPO}
 git checkout -b gh-pages
-git add index.html *.js *.js.map circle.yml CNAME
+git add \
+  CNAME \
+  circle.yml \
+  favicon.ico \
+  index.html \
+  *.js \
+  *.js.map
 git commit -am 'add files'
 git push -f origin gh-pages

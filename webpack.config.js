@@ -1,4 +1,5 @@
 const BabiliPlugin = require('babili-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPluign = require('html-webpack-plugin');
 const path = require('path');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
@@ -50,6 +51,12 @@ module.exports = {
     new DefinePlugin({
       'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
     }),
+    new CopyPlugin([
+      {
+        from: path.join(__dirname, 'src', 'assets', 'favicon.ico'),
+        to: path.join(__dirname, 'build', 'public', 'favicon.ico'),
+      },
+    ]),
     ...(process.env.NODE_ENV !== 'development' ? [
       new BabiliPlugin(),
     ] : []),
