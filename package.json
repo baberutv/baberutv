@@ -4,7 +4,6 @@
     "url": "https://github.com/baberutv/baberutv/issues"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
     "context-provider": "^1.0.2",
     "dexie": "^v2.0.0-beta.4",
     "dialog-polyfill": "^0.4.4",
