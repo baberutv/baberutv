@@ -10,7 +10,7 @@
 ## Install
 
 ```shell
-$ yarn install
+$ yarn
 $ yarn start
 ```
 

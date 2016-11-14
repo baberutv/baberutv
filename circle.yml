@@ -12,7 +12,7 @@ dependencies:
     - ~/.yarn-cache
   override:
     - npm install -g yarn
-    - yarn install
+    - yarn
 
 test:
   override:
