@@ -16,18 +16,18 @@ module.exports = {
     loaders: [
       {
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         test: /\.jsx?$/,
       },
       {
         loaders: [
-          'isomorphic-style',
-          'css',
+          'isomorphic-style-loader',
+          'css-loader',
         ],
         test: /\.css$/,
       },
       {
-        loader: 'handlebars',
+        loader: 'handlebars-loader',
         test: /\.hbs/,
       },
     ],
