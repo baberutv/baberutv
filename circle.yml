@@ -13,6 +13,7 @@ dependencies:
   override:
     - npm install -g yarn
     - yarn
+    - NODE_ENV=test yarn build
 
 test:
   override:
