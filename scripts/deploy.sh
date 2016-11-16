@@ -6,7 +6,7 @@ REPO=$(git config remote.origin.url)
 
 cd $(dirname $0)/..
 rm -rf build
-NODE_ENV=production yarn run build
+NODE_ENV=production yarn build
 cd build/public
 cp ../../circle.yml .
 cat <<__EOS | node | tee CNAME
