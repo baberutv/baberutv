@@ -2,7 +2,7 @@ const BabiliPlugin = require('babili-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPluign = require('html-webpack-plugin');
 const path = require('path');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
+const EnvironmentPlugin = require('webpack/lib/EnvironmentPlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 const pkg = require('./package.json');
 
@@ -49,9 +49,9 @@ module.exports = {
       template: path.join(__dirname, 'src', 'templates', 'index.hbs'),
       title: process.env.BABERU_TV_SITE_NAME || `${pkg.name} (v${pkg.version})`,
     }),
-    new DefinePlugin({
-      'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
-    }),
+    new EnvironmentPlugin([
+      'NODE_ENV',
+    ]),
     new CopyPlugin([
       {
         from: path.join(__dirname, 'src', 'assets', 'favicon.ico'),
