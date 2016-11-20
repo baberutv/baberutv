@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         loader: 'handlebars-loader',
-        test: /\.hbs/,
+        test: /\.hbs$/,
       },
     ],
   },
