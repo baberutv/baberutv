@@ -15,6 +15,7 @@ const { homepage: uri } = require('../../package.json');
 const { host } = parseURL(uri);
 console.log(host);
 __EOS
+touch .nojekyll
 rm -rf .git
 git init .
 git config user.name 'CicleCI'
@@ -22,6 +23,7 @@ git config user.email 'sayhi@circleci.com'
 git remote add origin ${REPO}
 git checkout -b gh-pages
 git add \
+  .nojekyll \
   CNAME \
   circle.yml \
   favicon.ico \
