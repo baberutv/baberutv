@@ -49,6 +49,9 @@
   },
   "homepage": "https://baberu.tv/",
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
     "moduleNameMapper": {
       "^.+\\.css$": "<rootDir>/__tests__/__mocks__/styleMock.js"
     },
@@ -68,7 +71,7 @@
     "lint": "eslint --ext js --ext jsx . && flow check",
     "start": "webpack-dev-server",
     "test": "${npm_execpath:-npm} run lint && ${npm_execpath:-npm} run test-only",
-    "test-only": "jest"
+    "test-only": "jest --coverage"
   },
   "version": "0.4.4"
 }
