@@ -57,6 +57,10 @@ module.exports = {
         from: path.join(__dirname, 'src', 'assets', 'favicon.ico'),
         to: path.join(__dirname, 'build', 'public', 'favicon.ico'),
       },
+      {
+        from: path.join(__dirname, 'src', 'assets', '404.html'),
+        to: path.join(__dirname, 'build', 'public', '404.html'),
+      },
     ]),
     ...(process.env.NODE_ENV !== 'development' ? [
       new OccurrenceOrderPlugin(),
