@@ -25,6 +25,7 @@ git checkout -b gh-pages
 git add \
   .nojekyll \
   CNAME \
+  404.html \
   circle.yml \
   favicon.ico \
   index.html \
