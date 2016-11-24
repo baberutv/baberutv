@@ -4,59 +4,57 @@ import React, { Component, PropTypes } from 'react';
 import database from '../databases/media';
 import styles from '../styles/modal.css';
 
-function handleCancel(event) {
-  event.preventDefault();
-  return false;
-}
-
 @withStyles(styles)
 export default class Modal extends Component {
   static displayName = 'Modal';
 
   static contextTypes = {
+    closeModal: PropTypes.func.isRequired,
     setVideo: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     open: false,
+    videoUri: '',
   };
 
   static propTypes = {
     open: PropTypes.bool.isRequired,
+    videoUri: PropTypes.string,
   };
 
   constructor(props, ...args) {
     super(props, ...args);
     Object.assign(this.state, {
-      open: props.open,
+      uri: props.videoUri || '',
     });
+    this.handleCancel = this.handleCancel.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUriChange = this.handleUriChange.bind(this);
   }
 
   state = {
-    open: false,
     uri: '',
     videos: [],
   };
 
   componentDidMount() {
     dialogPolyfill.registerDialog(this.dialogElement);
-    this.dialogElement.addEventListener('cancel', handleCancel);
+    this.dialogElement.addEventListener('cancel', this.handleCancel);
     this.dialogElement.addEventListener('close', this.handleClose);
     const { open } = this.dialogElement;
-    if (this.state.open && !open) {
+    if (this.props.open && !open) {
       this.showModal();
-    } else if (open && !this.state.open) {
+    } else if (open && !this.props.open) {
       this.close();
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.open !== nextProps.open) {
+    if (this.props.videoUri !== nextProps.videoUri) {
       this.setState({
-        open: nextProps.open,
+        uri: nextProps.videoUri,
       });
     }
   }
@@ -64,24 +62,30 @@ export default class Modal extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
       this.state.uri !== nextState.uri ||
-      this.state.open !== nextState.open ||
+      this.props.open !== nextProps.open ||
       this.state.videos.length !== nextState.videos.length
     );
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUpdate(nextProps) {
     const { open } = this.dialogElement;
-    if (nextState.open && !open) {
+    if (nextProps.open && !open) {
       this.showModal();
-    } else if (open && !nextState.open) {
+    } else if (open && !nextProps.open) {
       this.close();
     }
   }
 
+  handleCancel(event) {
+    if (!this.props.videoUri) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  }
+
   handleClose() {
-    this.setState({
-      open: false,
-    });
+    this.context.closeModal();
   }
 
   handleUriChange({ target }) {
@@ -113,7 +117,7 @@ export default class Modal extends Component {
     return (
       <dialog
         className="modal"
-        /* onCancel={handleCancel} */
+        /* onCancel={this.handleCancel} */
         /* onClose={this.handleClose} */
         ref={component => (this.dialogElement = component)}
       >

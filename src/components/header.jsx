@@ -6,6 +6,10 @@ import styles from '../styles/header.css';
 export default class Header extends Component {
   static displayName = 'Header';
 
+  static contextTypes = {
+    editVideo: PropTypes.func.isRequired,
+  };
+
   static propTypes = {
     videoUri: PropTypes.string,
   };
@@ -15,6 +19,7 @@ export default class Header extends Component {
     Object.assign(this.state, {
       visible: !props.videoUri,
     });
+    this.handleEditVideoButtonClick = this.handleEditVideoButtonClick.bind(this);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
@@ -33,6 +38,10 @@ export default class Header extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     return this.state.visible !== nextState.visible;
+  }
+
+  handleEditVideoButtonClick() {
+    this.context.editVideo();
   }
 
   handleMouseEnter() {
@@ -59,6 +68,18 @@ export default class Header extends Component {
         onMouseLeave={this.handleMouseLeave}
       >
         <h1>TV</h1>
+        <nav>
+          <ul>
+            <li>
+              <button
+                onClick={this.handleEditVideoButtonClick}
+                type="button"
+              >
+                Open
+              </button>
+            </li>
+          </ul>
+        </nav>
       </header>
     );
   }
