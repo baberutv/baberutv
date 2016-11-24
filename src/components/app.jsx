@@ -25,6 +25,8 @@ export default class App extends Component {
   };
 
   static childContextTypes = {
+    closeModal: PropTypes.func.isRequired,
+    editVideo: PropTypes.func.isRequired,
     setVideo: PropTypes.func.isRequired,
   };
 
@@ -33,16 +35,22 @@ export default class App extends Component {
   constructor(...args) {
     super(...args);
     this.handlePopState = this.handlePopState.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.editVideo = this.editVideo.bind(this);
     this.setVideo = this.setVideo.bind(this);
   }
 
   state = {
+    editVideo: false,
     videoUri: null,
   };
 
   getChildContext() {
+    const { closeModal, editVideo, setVideo } = this;
     return {
-      setVideo: this.setVideo,
+      closeModal,
+      editVideo,
+      setVideo,
     };
   }
 
@@ -52,6 +60,10 @@ export default class App extends Component {
     const videoUri = searchParams.get('uri');
     if (videoUri) {
       this.setState({ videoUri });
+    } else {
+      this.setState({
+        editVideo: true,
+      });
     }
   }
 
@@ -60,12 +72,20 @@ export default class App extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.videoUri !== nextState.videoUri;
+    return (
+      this.state.editVideo !== nextState.editVideo ||
+      this.state.videoUri !== nextState.videoUri
+    );
   }
 
   componentWillUpdate(nextProps, nextState) {
-    const { videoUri } = nextState;
+    const { editVideo, videoUri } = nextState;
     if (this.state.videoUri !== videoUri) {
+      if (videoUri && editVideo) {
+        this.setState({
+          editVideo: false,
+        });
+      }
       const currentUri = location.pathname + location.search;
       const uri = `/${videoUri ? `?uri=${encodeURIComponent(videoUri)}` : ''}`;
       if (currentUri !== uri) {
@@ -84,6 +104,22 @@ export default class App extends Component {
     });
   }
 
+  editVideo() {
+    if (!this.state.editVideo) {
+      this.setState({
+        editVideo: true,
+      });
+    }
+  }
+
+  closeModal() {
+    if (this.state.editVideo) {
+      this.setState({
+        editVideo: false,
+      });
+    }
+  }
+
   handlePopState({ state }) {
     const { videoUri = '' } = state || {};
     this.setState({ videoUri });
@@ -96,7 +132,7 @@ export default class App extends Component {
         <main>
           <Player src={this.state.videoUri} />
         </main>
-        <Modal open={!this.state.videoUri} />
+        <Modal open={this.state.editVideo} videoUri={this.state.videoUri} />
       </div>
     );
   }

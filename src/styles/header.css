@@ -24,3 +24,21 @@ header h1 {
   padding: .5em 1em;
   text-align: center;
 }
+
+header nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+header nav ul {
+  display: block;
+  margin: .5rem 1rem 0 0;
+  padding: 0;
+}
+
+header nav li {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
