@@ -9,7 +9,7 @@ machine:
 
 dependencies:
   cache_directories:
-    - ~/.yarn-cache
+    - ~/.cache/yarn
   override:
     - npm install -g yarn
     - yarn
