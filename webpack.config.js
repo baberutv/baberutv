@@ -9,6 +9,10 @@ const pkg = require('./package.json');
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
+  devServer: {
+    host: '0.0.0.0',
+    port: +(process.env.PORT || 8080),
+  },
   devtool: process.env.NODE_ENV === 'development' ? 'cheap-module-eval-source-map' : 'source-map',
   entry: path.join(__dirname, 'src', 'client.jsx'),
   module: {
