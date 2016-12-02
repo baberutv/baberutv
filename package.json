@@ -73,5 +73,5 @@
     "test": "${npm_execpath:-npm} run lint && ${npm_execpath:-npm} run test-only",
     "test-only": "jest --coverage"
   },
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
