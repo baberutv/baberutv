@@ -4,16 +4,28 @@ general:
       - gh-pages
 
 machine:
+  environment:
+    YARN_VERSION: 0.17.10
+    PATH: ${HOME}/.yarn/bin:${PATH}
   node:
     version: 6.9.1
 
 dependencies:
+  pre:
+    - |
+      if [[ ! -n $(which yarn) || $(yarn --version) != ${YARN_VERSION} ]]; then
+        echo "Download and install Yarn."
+        curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
+      else
+        echo "The correct version of Yarn is already installed."
+      fi
+  override:
+    - yarn
+  post:
+    - NODE_ENV=test yarn build
   cache_directories:
     - ~/.cache/yarn
-  override:
-    - npm install -g yarn
-    - yarn
-    - NODE_ENV=test yarn build
+    - ~/.yarn
 
 test:
   override:
