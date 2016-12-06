@@ -52,12 +52,22 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ],
+    "coverageDirectory": "<rootDir>/coverage",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx"
+    ],
     "moduleNameMapper": {
       "^.+\\.css$": "<rootDir>/__tests__/__mocks__/styleMock.js"
     },
     "testPathIgnorePatterns": [
       "__tests__/__mocks__/"
-    ]
+    ],
+    "testRegex": "/__tests__/.*\\.(js|jsx)$",
+    "testURL": "https://baberutv.test/",
+    "timers": "fake",
+    "verbose": false
   },
   "license": "MIT",
   "name": "baberutv",
