@@ -1,8 +1,12 @@
 {
   "author": "Yamagishi Kazutoshi <ykzts@desire.sh>",
+  "bugs": {
+    "url": "https://github.com/baberutv/baberutv/issues"
+  },
   "dependencies": {
-    "classnames": "^2.2.5",
     "context-provider": "^1.0.2",
+    "dexie": "^v2.0.0-beta.4",
+    "dialog-polyfill": "^0.4.4",
     "hls.js": "^0.6.6",
     "isomorphic-style-loader": "^1.0.0",
     "react": "^15.3.2",
@@ -14,36 +18,70 @@
     "babel-core": "^6.18.0",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-plugin-transform-class-properties": "^6.18.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-plugin-transform-flow-strip-types": "^6.18.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-plugin-transform-react-jsx-source": "^6.9.0",
-    "css-loader": "^0.25.0",
+    "babili-webpack-plugin": "^0.0.7",
+    "copy-webpack-plugin": "^4.0.0",
+    "css-loader": "^0.26.0",
+    "enzyme": "^2.5.1",
     "eslint": "^3.8.1",
-    "eslint-config-airbnb": "^12.0.0",
+    "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
+    "flow-bin": "^0.36.0",
+    "handlebars": "^4.0.5",
+    "handlebars-loader": "^1.4.0",
     "html-webpack-plugin": "^2.24.0",
-    "webpack": "^2.1.0-beta.25",
-    "webpack-dev-server": "^1.16.2"
+    "jest": "^17.0.0",
+    "react-addons-test-utils": "^15.3.2",
+    "webpack": "^2.1.0-beta.26",
+    "webpack-dev-server": "^2.1.0-beta.11"
   },
   "engines": {
     "node": ">= 5.0.0",
-    "yarn": ">= 0.16.0"
+    "yarn": ">= 0.17.0"
+  },
+  "homepage": "https://baberu.tv/",
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "coverageDirectory": "<rootDir>/coverage",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.css$": "<rootDir>/__tests__/__mocks__/styleMock.js"
+    },
+    "testPathIgnorePatterns": [
+      "__tests__/__mocks__/"
+    ],
+    "testRegex": "/__tests__/.*\\.(js|jsx)$",
+    "testURL": "https://baberutv.test/",
+    "timers": "fake",
+    "verbose": false
   },
   "license": "MIT",
-  "name": "tv",
+  "name": "baberutv",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/ykzts/tv.git"
+    "url": "https://github.com/baberutv/baberutv.git"
   },
   "scripts": {
     "build": "webpack",
-    "lint": "eslint --ext js --ext jsx .",
+    "lint": "eslint --ext js --ext jsx . && flow check",
     "start": "webpack-dev-server",
-    "test": "${npm_execpath:-npm} run lint"
+    "test": "${npm_execpath:-npm} run lint && ${npm_execpath:-npm} run test-only",
+    "test-only": "jest --coverage"
   },
-  "version": "0.0.2"
+  "version": "1.0.2"
 }

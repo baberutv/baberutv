@@ -1,15 +1,10 @@
+/* @flow */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
 
-const currentScript = document.currentScript || (() => {
-  const scripts = document.getElementsByTagName('script');
-  return scripts[scripts.length - 1];
-})();
-const container = document.createElement('div');
-currentScript.parentNode.insertBefore(container, currentScript);
-
-function insertCss(...styles) {
+function insertCss(...styles: Array<Object>): () => void {
   // eslint-disable-next-line no-underscore-dangle
   const removeStyles = styles.map(style => style._insertCss());
   return () => {
@@ -17,4 +12,4 @@ function insertCss(...styles) {
   };
 }
 
-ReactDOM.render(<App context={{ insertCss }} />, container);
+ReactDOM.render(<App context={{ insertCss }} />, document.getElementById('root'));

@@ -1,0 +1,13 @@
+[ignore]
+<PROJECT_ROOT>/build/.*
+<PROJECT_ROOT>/node_modules/.*
+
+[include]
+
+[libs]
+
+[options]
+esproposal.decorators=ignore
+
+[version]
+0.36.0

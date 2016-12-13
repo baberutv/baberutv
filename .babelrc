@@ -4,11 +4,18 @@
       "plugins": [
         "transform-react-jsx-source"
       ]
+    },
+    "test": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
     }
   },
   "plugins": [
+    "transform-async-to-generator",
     "transform-decorators-legacy",
     "transform-class-properties",
+    "transform-flow-strip-types",
     "transform-react-jsx"
   ]
 }

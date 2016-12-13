@@ -1,4 +1,5 @@
 .video {
+  background-color: #000;
   margin: 0;
 }
 
@@ -13,6 +14,7 @@
 .video video {
   display: block;
   height: auto;
+  margin: 0 auto;
   max-width: 100%;
   width: 1280px;
 }
