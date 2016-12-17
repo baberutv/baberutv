@@ -48,6 +48,7 @@
     "node": ">= 5.0.0",
     "yarn": ">= 0.17.0"
   },
+  "engineStrict": true,
   "homepage": "https://baberu.tv/",
   "jest": {
     "collectCoverageFrom": [
