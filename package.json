@@ -39,7 +39,7 @@
     "handlebars": "^4.0.5",
     "handlebars-loader": "^1.4.0",
     "html-webpack-plugin": "^2.24.0",
-    "jest": "^17.0.0",
+    "jest": "^18.0.0",
     "react-addons-test-utils": "^15.3.2",
     "webpack": "^2.2.0-rc.0",
     "webpack-dev-server": "^2.2.0-rc.0"
