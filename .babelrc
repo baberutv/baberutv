@@ -12,10 +12,28 @@
     }
   },
   "plugins": [
-    "transform-async-to-generator",
     "transform-decorators-legacy",
     "transform-class-properties",
     "transform-flow-strip-types",
     "transform-react-jsx"
+  ],
+  "presets": [
+    ["env", {
+      "debug": true,
+      "exclude": [
+        "transform-regenerator"
+      ],
+      "modules": false,
+      "targets": {
+        "browsers": [
+          "Chrome >= 55",
+          "Edge >= 14",
+          "Firefox >= 50",
+          "iOS >= 10",
+          "Safari >= 10"
+        ]
+      },
+      "useBuiltIns": true
+    }]
   ]
 }
