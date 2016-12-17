@@ -16,22 +16,22 @@ module.exports = {
   devtool: 'source-map',
   entry: path.join(__dirname, 'src', 'client.jsx'),
   module: {
-    loaders: [
+    rules: [
       {
         exclude: /node_modules/,
-        loader: 'babel-loader',
         test: /\.jsx?$/,
+        use: 'babel-loader',
       },
       {
-        loaders: [
+        test: /\.css$/,
+        use: [
           'isomorphic-style-loader',
           'css-loader',
         ],
-        test: /\.css$/,
       },
       {
-        loader: 'handlebars-loader',
         test: /\.hbs$/,
+        use: 'handlebars-loader',
       },
     ],
   },
