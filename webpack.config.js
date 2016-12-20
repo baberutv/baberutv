@@ -4,11 +4,12 @@ const HtmlPluign = require('html-webpack-plugin');
 const path = require('path');
 const EnvironmentPlugin = require('webpack/lib/EnvironmentPlugin');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
+const merge = require('webpack-merge');
 const pkg = require('./package.json');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-module.exports = {
+const clientConfig = {
   devServer: {
     host: '0.0.0.0',
     port: +(process.env.PORT || 8080),
@@ -36,7 +37,7 @@ module.exports = {
     ],
   },
   output: {
-    filename: process.env.NODE_ENV === 'development' ? '[name].js?[chunkhash]' : '[name].[chunkhash].js',
+    filename: '[name].js?[chunkhash]',
     path: path.join(__dirname, 'build', 'public'),
     publicPath: '/',
   },
@@ -66,10 +67,6 @@ module.exports = {
         to: path.join(__dirname, 'build', 'public', '404.html'),
       },
     ]),
-    ...(process.env.NODE_ENV !== 'development' ? [
-      new OccurrenceOrderPlugin(),
-      new BabiliPlugin(),
-    ] : []),
   ],
   resolve: {
     extensions: [
@@ -77,4 +74,21 @@ module.exports = {
       '.jsx',
     ],
   },
+};
+
+module.exports = (env = process.env.NODE_ENV) => {
+  switch (env) {
+    case 'production':
+      return merge(clientConfig, {
+        output: {
+          filename: '[name].[chunkhash].js',
+        },
+        plugins: [
+          new OccurrenceOrderPlugin(),
+          new BabiliPlugin(),
+        ],
+      });
+    default:
+      return clientConfig;
+  }
 };
