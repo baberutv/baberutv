@@ -13,4 +13,6 @@ function insertCss(...styles: Array<Object>): () => void {
   };
 }
 
+console.log(process.env.NODE_ENV);
+
 ReactDOM.render(<App context={{ insertCss }} />, document.getElementById('root'));

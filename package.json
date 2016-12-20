@@ -42,7 +42,8 @@
     "jest": "^18.0.0",
     "react-addons-test-utils": "^15.3.2",
     "webpack": "^2.2.0-rc.0",
-    "webpack-dev-server": "^2.2.0-rc.0"
+    "webpack-dev-server": "^2.2.0-rc.0",
+    "webpack-merge": "^1.1.2"
   },
   "engines": {
     "node": ">= 5.0.0",
@@ -79,7 +80,7 @@
     "url": "https://github.com/baberutv/baberutv.git"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env ${NODE_ENV:-development}",
     "lint": "eslint --ext js --ext jsx . && flow check",
     "start": "webpack-dev-server",
     "test": "${npm_execpath:-npm} run lint && ${npm_execpath:-npm} run test-only",
