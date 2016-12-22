@@ -5,7 +5,7 @@ general:
 
 machine:
   environment:
-    YARN_VERSION: 0.17.10
+    YARN_VERSION: 0.18.1
     PATH: ${HOME}/.yarn/bin:${PATH}
   node:
     version: 6.9.2
