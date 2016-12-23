@@ -43,7 +43,7 @@
     "react-addons-test-utils": "^15.3.2",
     "webpack": "^2.2.0-rc.0",
     "webpack-dev-server": "^2.2.0-rc.0",
-    "webpack-merge": "^1.1.2"
+    "webpack-merge": "^2.0.0"
   },
   "engines": {
     "node": ">= 5.0.0",
