@@ -11,6 +11,10 @@ export default class Player extends Component {
     src: PropTypes.string,
   };
 
+  static defaultProps = {
+    src: null,
+  }
+
   shouldComponentUpdate(nextProps) {
     return this.props.src !== nextProps.src;
   }
