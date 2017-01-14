@@ -16,6 +16,10 @@ export default class Video extends Component {
     src: PropTypes.string,
   };
 
+  static defaultProps = {
+    src: null,
+  }
+
   constructor(...args) {
     super(...args);
     this.hls = null;

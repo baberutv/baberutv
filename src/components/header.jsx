@@ -14,6 +14,10 @@ export default class Header extends Component {
     videoUri: PropTypes.string,
   };
 
+  static defaultProps = {
+    videoUri: null,
+  };
+
   constructor(props, ...args) {
     super(props, ...args);
     Object.assign(this.state, {
