@@ -26,6 +26,7 @@ export default class Video extends Component {
     this.handleBeforeUnload = this.handleBeforeUnload.bind(this);
     this.handleCanPlay = this.handleCanPlay.bind(this);
     this.handleError = this.handleError.bind(this);
+    this.handleVideoClick = this.handleVideoClick.bind(this);
   }
 
   componentDidMount() {
@@ -92,6 +93,17 @@ export default class Video extends Component {
     }
   }
 
+  handleVideoClick(event) {
+    event.preventDefault();
+    const { ended, paused } = this.videoElement;
+    if (!paused) {
+      this.videoElement.pause();
+    } else if (!ended) {
+      this.videoElement.play();
+    }
+    return false;
+  }
+
   loadSource(uri) {
     if (this.hls) {
       if (uri) {
@@ -110,14 +122,16 @@ export default class Video extends Component {
 
   render() {
     return (
-      <div className="video">
-        <video
-          autoPlay
-          controls
-          onCanPlay={this.handleCanPlay}
-          onError={this.handleError}
-          ref={component => (this.videoElement = component)}
-        />
+      <div aria-hidden={!this.props.src} className="video">
+        <button onClick={this.handleVideoClick} type="button">
+          <video
+            autoPlay
+            controls
+            onCanPlay={this.handleCanPlay}
+            onError={this.handleError}
+            ref={component => (this.videoElement = component)}
+          />
+        </button>
       </div>
     );
   }
