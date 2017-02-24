@@ -1,4 +1,4 @@
-# BaberuTV [![(build status)](https://circleci.com/gh/baberutv/baberutv.svg?style=shield)](https://circleci.com/gh/baberutv/baberutv/tree/master)
+# BaberuTV [![(build status)](https://circleci.com/gh/baberutv/baberutv.svg?style=shield)](https://circleci.com/gh/baberutv/baberutv/tree/master) [![coverage status](https://coveralls.io/repos/github/baberutv/baberutv/badge.svg?branch=master)](https://coveralls.io/github/baberutv/baberutv?branch=master)
 
 :tv: Television!
 
