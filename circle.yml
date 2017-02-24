@@ -30,6 +30,8 @@ dependencies:
 test:
   override:
     - yarn test
+  post:
+    - cat ./coverage/lcov.info | $(yarn bin)/coveralls
 
 deployment:
   publish:
