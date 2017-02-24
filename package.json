@@ -8,7 +8,7 @@
     "context-provider": "^1.0.2",
     "dexie": "^v2.0.0-beta.4",
     "dialog-polyfill": "^0.4.4",
-    "hls.js": "^0.6.6",
+    "hls.js": "^0.7.1",
     "isomorphic-style-loader": "^1.0.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -39,11 +39,11 @@
     "handlebars": "^4.0.5",
     "handlebars-loader": "^1.4.0",
     "html-webpack-plugin": "^2.24.0",
-    "jest": "^18.0.0",
+    "jest": "^19.0.2",
     "react-addons-test-utils": "^15.3.2",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
-    "webpack-merge": "^2.0.0"
+    "webpack-merge": "^3.0.0"
   },
   "engines": {
     "node": ">= 5.0.0",
