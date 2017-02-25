@@ -22,7 +22,7 @@ dependencies:
   override:
     - yarn
   post:
-    - NODE_ENV=test yarn build
+    - yarn build -- --env test
   cache_directories:
     - ~/.cache/yarn
     - ~/.yarn
