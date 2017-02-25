@@ -11,7 +11,6 @@ services:
       - ./__tests__:/app/__tests__
       - ./scripts:/app/scripts
       - ./src:/app/src
-      - ./.babelrc:/app/.babelrc
       - ./.eslintignore:/app/.eslintignore
       - ./.eslintrc.json:/app/.eslintrc.json
       - ./package.json:/app/package.json

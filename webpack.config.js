@@ -7,6 +7,43 @@ const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugi
 const merge = require('webpack-merge');
 const pkg = require('./package.json');
 
+const babelrc = {
+  env: {
+    development: {
+      plugins: [
+        'transform-react-jsx-source',
+      ],
+    },
+  },
+  plugins: [
+    'transform-decorators-legacy',
+    'transform-class-properties',
+    'transform-react-jsx',
+  ],
+  presets: [
+    [
+      'env',
+      {
+        debug: true,
+        exclude: [
+          'transform-regenerator',
+        ],
+        modules: false,
+        targets: {
+          browsers: [
+            'Chrome >= 56',
+            'Edge >= 14',
+            'Firefox >= 51',
+            'iOS >= 10',
+            'Safari >= 10',
+          ],
+        },
+        useBuiltIns: true,
+      },
+    ],
+  ],
+};
+
 const clientConfig = {
   devServer: {
     host: '0.0.0.0',
@@ -19,7 +56,12 @@ const clientConfig = {
       {
         exclude: /node_modules/,
         test: /\.jsx?$/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: Object.assign({
+            babelrc: false,
+          }, babelrc),
+        },
       },
       {
         test: /\.css$/,
