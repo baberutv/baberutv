@@ -31,7 +31,7 @@ test:
   override:
     - yarn test
   post:
-    - cat ./coverage/lcov.info | $(yarn bin)/coveralls
+    - cat ./coverage/lcov.info | $(yarn bin)/coveralls || echo "1"
 
 deployment:
   publish:
