@@ -14,7 +14,7 @@ services:
       - ./.eslintignore:/app/.eslintignore
       - ./.eslintrc.json:/app/.eslintrc.json
       - ./package.json:/app/package.json
-      - ./webpack.config.js:/app/webpack.config.js
+      - ./webpack.config.babel.js:/app/webpack.config.babel.js
       - ./yarn.lock:/app/yarn.lock
 volumes:
   node_modules:
