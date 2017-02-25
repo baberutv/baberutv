@@ -1,0 +1,21 @@
+version: "3.0"
+services:
+  webpack:
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - node_modules:/app/node_modules
+      - ./__tests__:/app/__tests__
+      - ./scripts:/app/scripts
+      - ./src:/app/src
+      - ./.babelrc:/app/.babelrc
+      - ./.eslintignore:/app/.eslintignore
+      - ./.eslintrc.json:/app/.eslintrc.json
+      - ./package.json:/app/package.json
+      - ./webpack.config.json:/app/webpack.config.json
+      - ./yarn.lock:/app/yarn.lock
+volumes:
+  node_modules:
