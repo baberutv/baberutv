@@ -25,7 +25,6 @@ export default class Video extends Component {
     this.hls = null;
     this.handleBeforeUnload = this.handleBeforeUnload.bind(this);
     this.handleCanPlay = this.handleCanPlay.bind(this);
-    this.handleError = this.handleError.bind(this);
   }
 
   componentDidMount() {
@@ -36,7 +35,6 @@ export default class Video extends Component {
     const canPlay = this.videoElement.canPlayType('application/vnd.apple.mpegURL');
     if (!['probably', 'maybe'].includes(canPlay) && Hls.isSupported()) {
       this.hls = new Hls();
-      this.hls.on(Hls.Events.ERROR, this.handleError);
     }
     if (this.props.src) {
       this.loadSource(this.props.src);
@@ -82,16 +80,6 @@ export default class Video extends Component {
     });
   }
 
-  handleError() {
-    if (this.props.src) {
-      // eslint-disable-next-line no-alert
-      alert('Video playback failed.');
-      this.context.setVideo({
-        uri: '',
-      });
-    }
-  }
-
   loadSource(uri) {
     if (this.hls) {
       if (uri) {
@@ -115,7 +103,6 @@ export default class Video extends Component {
           autoPlay
           controls
           onCanPlay={this.handleCanPlay}
-          onError={this.handleError}
           ref={component => (this.videoElement = component)}
         />
       </div>
