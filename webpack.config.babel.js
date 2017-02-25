@@ -1,11 +1,11 @@
-const BabiliPlugin = require('babili-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlPluign = require('html-webpack-plugin');
-const path = require('path');
-const EnvironmentPlugin = require('webpack/lib/EnvironmentPlugin');
-const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
-const merge = require('webpack-merge');
-const pkg = require('./package.json');
+import BabiliPlugin from 'babili-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import HtmlPluign from 'html-webpack-plugin';
+import path from 'path';
+import EnvironmentPlugin from 'webpack/lib/EnvironmentPlugin';
+import OccurrenceOrderPlugin from 'webpack/lib/optimize/OccurrenceOrderPlugin';
+import merge from 'webpack-merge';
+import pkg from './package.json';
 
 const babelrc = {
   env: {
@@ -116,7 +116,7 @@ const clientConfig = {
   },
 };
 
-module.exports = (env = process.env.NODE_ENV) => {
+export default (env = process.env.NODE_ENV) => {
   process.env.NODE_ENV = env || 'development';
   switch (process.env.NODE_ENV) {
     case 'production':
