@@ -25,9 +25,9 @@
       "modules": false,
       "targets": {
         "browsers": [
-          "Chrome >= 55",
+          "Chrome >= 56",
           "Edge >= 14",
-          "Firefox >= 50",
+          "Firefox >= 51",
           "iOS >= 10",
           "Safari >= 10"
         ]
