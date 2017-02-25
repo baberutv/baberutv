@@ -7,8 +7,6 @@ const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugi
 const merge = require('webpack-merge');
 const pkg = require('./package.json');
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 const clientConfig = {
   devServer: {
     host: '0.0.0.0',
@@ -77,7 +75,8 @@ const clientConfig = {
 };
 
 module.exports = (env = process.env.NODE_ENV) => {
-  switch (env) {
+  process.env.NODE_ENV = env || 'development';
+  switch (process.env.NODE_ENV) {
     case 'production':
       return merge(clientConfig, {
         output: {
