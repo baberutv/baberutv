@@ -14,6 +14,13 @@ $ yarn
 $ yarn start
 ```
 
+## Supported Browsers
+
+- Google Chrome
+- Firefox
+- Safari
+- Microsoft Edge
+
 ## License
 
 [MIT](LICENSE)
