@@ -6,3 +6,7 @@ abbr {
   border: none;
   text-decoration: none;
 }
+
+.main-title {
+  flex: 1;
+}

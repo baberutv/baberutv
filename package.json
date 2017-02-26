@@ -26,9 +26,10 @@
     "babel-polyfill": "^6.20.0",
     "context-provider": "^1.0.2",
     "dexie": "^v2.0.0-beta.4",
-    "dialog-polyfill": "^0.4.4",
     "hls.js": "^0.7.1",
     "isomorphic-style-loader": "^1.0.0",
+    "jss": "^6.3.0",
+    "material-ui": "^1.0.0-alpha.6",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "url-search-params": "^0.6.1"
