@@ -40,6 +40,7 @@ jobs:
       - run:
           name: Post-Test
           command: cat ./coverage/lcov.info | $(yarn bin)/coveralls || echo "1"
+      - add_ssh_keys
       - deploy:
           command: |
             if echo $(git describe) | grep -Eq "^v[[:digit:]](\\.[[:digit:]]+)*$"; then
