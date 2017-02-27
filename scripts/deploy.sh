@@ -8,12 +8,12 @@ cd $(dirname $0)/..
 rm -rf build
 yarn build -- --env production
 cd build/public
-cat <<EOF tee circle.yml
+cat <<__EOF | tee circle.yml
 general:
   branches:
     ignore:
       - gh-pages
-EOF
+__EOF
 cat <<__EOS | node | tee CNAME
 const { parse: parseURL } = require('url');
 const { homepage: uri } = require('../../package.json');
