@@ -44,6 +44,6 @@ jobs:
           command: cat ./coverage/lcov.info | $(yarn bin)/coveralls || echo "1"
       - deploy:
           command: |
-            if echo $(git describe) | grep -Eq "^v\\d(\\.\\d+)*$"; then
+            if echo $(git describe) | grep -Eq "^v[[:digit:]](\\.[[:digit:]]+)*$"; then
               ./scripts/deploy.sh
             fi
