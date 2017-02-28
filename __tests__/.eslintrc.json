@@ -1,7 +1,5 @@
 {
   "env": {
     "jest": true
-  },
-  "extends": "../.eslintrc.json",
-  "root": true
+  }
 }
