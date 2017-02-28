@@ -3,7 +3,7 @@ services:
   webpack:
     build:
       context: .
-      dockerfile: ./dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - "8080:8080"
     volumes:
