@@ -69,6 +69,14 @@
     "node": ">= 5.0.0",
     "yarn": ">= 0.17.0"
   },
+  "eslintConfig": {
+    "env": {
+      "browser": true
+    },
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "root": true
+  },
   "engineStrict": true,
   "homepage": "https://baberu.tv/",
   "jest": {

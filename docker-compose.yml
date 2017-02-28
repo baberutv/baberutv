@@ -12,7 +12,6 @@ services:
       - ./scripts:/app/scripts
       - ./src:/app/src
       - ./.eslintignore:/app/.eslintignore
-      - ./.eslintrc.json:/app/.eslintrc.json
       - ./package.json:/app/package.json
       - ./webpack.config.babel.js:/app/webpack.config.babel.js
       - ./yarn.lock:/app/yarn.lock
