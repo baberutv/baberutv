@@ -67,6 +67,14 @@ export default class Header extends Component {
     }
   }
 
+  handleRequestClose = () => {
+    if (this.props.videoUri) {
+      this.setState({
+        open: false,
+      });
+    }
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     this.context.setVideo({
@@ -84,8 +92,8 @@ export default class Header extends Component {
               <MenuIcon onClick={this.handleClick} />
             </IconButton>
             <Text className="main-title" colorInherit type="title">TV</Text>
-            <Button contrast onClick={this.handleClick}>Open</Button>
-            <Dialog open={this.state.open}>
+            <Button contrast onClick={this.handleClick} primary>Open</Button>
+            <Dialog onRequestClose={this.handleRequestClose} open={this.state.open}>
               <form action="/" onSubmit={this.handleSubmit}>
                 <DialogTitle>Open video</DialogTitle>
                 <DialogContent>
@@ -100,7 +108,8 @@ export default class Header extends Component {
                   />
                 </DialogContent>
                 <DialogActions>
-                  <Button primary type="submit">Play</Button>
+                  <Button onClick={this.handleRequestClose} primary>Cancel</Button>
+                  <Button disabled={!this.state.videoUri} primary type="submit">Play</Button>
                 </DialogActions>
               </form>
             </Dialog>
