@@ -2,7 +2,7 @@
 
 BaberuTVはTVです。TVとはつまりTelevisionの略です。つまり遠隔の映像を受信して流す機器を指します。BaberuTVではウェブブラウザーを用いて、どのような環境からでも別の場所に存在する動画の再生を行えるアプリケーションです。
 
-不具合の報告や機能要望がありましたら、[Code of Conduct](/CODE_OF_CONDUCT.md)を読んだ上で(CONTRIBUTING.md)[/CONTRIBUTING.md]をご参照ください。
+不具合の報告や機能要望がありましたら、[Code of Conduct](/CODE_OF_CONDUCT.md)を読んだ上で[CONTRIBUTING.md](/CONTRIBUTING.md)をご参照ください。
 
 ## 対応しているウェブブラウザー
 
