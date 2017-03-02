@@ -30,13 +30,7 @@ const babelrc = {
         ],
         modules: false,
         targets: {
-          browsers: [
-            'Chrome >= 56',
-            'Edge >= 14',
-            'Firefox >= 51',
-            'iOS >= 10',
-            'Safari >= 10',
-          ],
+          browsers: pkg.browserslist,
         },
         useBuiltIns: true,
       },
