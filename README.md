@@ -6,10 +6,10 @@ BaberuTVはTVです。TVとはつまりTelevisionの略です。つまり遠隔�
 
 ## 対応しているウェブブラウザー
 
-- Google Chrome
-- Firefox
-- Safari
-- Microsoft Edge
+- [Google Chrome](https://www.google.com/chrome/browser/desktop/)
+- [Firefox](https://www.mozilla.org/ja/firefox/new/)
+- [Safari](http://www.apple.com/jp/safari/)
+- [Microsoft Edge](https://www.microsoft.com/ja-jp/windows/microsoft-edge)
 
 対応コストの都合上、いずれも最新のバージョンでしか動作の検証を行っていません。少しでも古い環境では動作しないおそれがあります。ですが個人開発である都合上そうしたコストをかける余力はなく、対応は難しい状況です。あらかじめご容赦ください。
 
