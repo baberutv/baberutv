@@ -19,6 +19,13 @@
       ]
     ]
   },
+  "browserslist": [
+    "Chrome >= 56",
+    "Edge >= 14",
+    "Firefox >= 51",
+    "iOS >= 10",
+    "Safari >= 10"
+  ],
   "bugs": {
     "url": "https://github.com/baberutv/baberutv/issues"
   },
