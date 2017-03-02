@@ -1,10 +1,12 @@
-FROM node:6.10.0
+FROM node:6.10.0-alpine
 
 ENV PATH /root/.yarn/bin:${PATH}
 ENV YARN_VERSION 0.21.3
 
 RUN \
-  curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version ${YARN_VERSION}
+  apk add --no-cache --update --virtual .build-deps bash curl gnupg tar && \
+  curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version ${YARN_VERSION} && \
+  apk del .build-deps
 
 WORKDIR /app
 
