@@ -21,7 +21,7 @@ $ docker-compose up
 コードのフォーマットの確認には[ESLint](http://eslint.org/)を使っています。
 
 ```shell
-$ docker-compose run webpack yarn lint
+$ docker-compose run --rm webpack yarn lint
 ```
 
 というコマンドを実行することによって、コードフォーマットに正しく従えているかどうかを確認できます。
@@ -29,7 +29,7 @@ $ docker-compose run webpack yarn lint
 ## テスト
 
 ```shell
-$ docker-compose run webpack yarn test-only
+$ docker-compose run --rm webpack yarn test-only
 ```
 
 というコマンドを実行することによって自動テストが実行されます。テスト自体は[`./__tests__`](/__tests__)以下にありますが、現時点ではほとんど書かれていません。今後充実させていくというのが課題となっています。
