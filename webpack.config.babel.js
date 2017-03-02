@@ -2,6 +2,7 @@ import BabiliPlugin from 'babili-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import HtmlPluign from 'html-webpack-plugin';
 import path from 'path';
+import PreloadPlugin from 'preload-webpack-plugin';
 import EnvironmentPlugin from 'webpack/lib/EnvironmentPlugin';
 import OccurrenceOrderPlugin from 'webpack/lib/optimize/OccurrenceOrderPlugin';
 import merge from 'webpack-merge';
@@ -16,6 +17,7 @@ const babelrc = {
     },
   },
   plugins: [
+    'syntax-dynamic-import',
     'transform-decorators-legacy',
     'transform-class-properties',
     'transform-react-jsx',
@@ -71,6 +73,8 @@ const clientConfig = {
     ],
   },
   output: {
+    chunkFilename: 'chunk.[id].js?[chunkhash]',
+    crossOriginLoading: 'anonymous',
     filename: '[name].js?[chunkhash]',
     path: path.join(__dirname, 'build', 'public'),
     publicPath: '/',
@@ -88,6 +92,7 @@ const clientConfig = {
       template: path.join(__dirname, 'src', 'templates', 'index.hbs'),
       title: process.env.BABERU_TV_SITE_NAME || `${pkg.name} (v${pkg.version})`,
     }),
+    new PreloadPlugin(),
     new EnvironmentPlugin([
       'NODE_ENV',
     ]),
@@ -116,6 +121,7 @@ export default (env = process.env.NODE_ENV) => {
     case 'production':
       return merge(clientConfig, {
         output: {
+          chunkFilename: 'chunk.[id].[chunkhash].js',
           filename: '[name].[chunkhash].js',
         },
         plugins: [

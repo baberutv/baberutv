@@ -1,6 +1,5 @@
 import provideContext from 'context-provider/lib/provideContext';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React, { Component, PropTypes } from 'react';
 import URLSearchParams from 'url-search-params';
 import styles from '../styles/app.css';
@@ -18,7 +17,7 @@ function getQueryString() {
   insertCss: PropTypes.func.isRequired,
 })
 @withStyles(styles)
-export default class App extends Component {
+export default class Main extends Component {
   static contextTypes = {
     insertCss: PropTypes.func.isRequired,
   };
@@ -27,7 +26,7 @@ export default class App extends Component {
     setVideo: PropTypes.func.isRequired,
   };
 
-  static displayName = 'App';
+  static displayName = 'Main';
 
   state = {
     open: false,
@@ -97,14 +96,12 @@ export default class App extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <div className="app">
-          <Header videoUri={this.state.videoUri} />
-          <main>
-            <Player src={this.state.videoUri} />
-          </main>
-        </div>
-      </MuiThemeProvider>
+      <div>
+        <Header videoUri={this.state.videoUri} />
+        <main>
+          <Player src={this.state.videoUri} />
+        </main>
+      </div>
     );
   }
 }
