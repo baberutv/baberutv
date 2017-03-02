@@ -3,6 +3,7 @@
   "babel": {
     "babelrc": false,
     "plugins": [
+      "syntax-dynamic-import",
       "transform-decorators-legacy",
       "transform-class-properties",
       "transform-react-jsx"
@@ -30,6 +31,7 @@
     "url": "https://github.com/baberutv/baberutv/issues"
   },
   "dependencies": {
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-polyfill": "^6.20.0",
     "context-provider": "^1.0.2",
     "dexie": "^v2.0.0-beta.4",
@@ -67,6 +69,7 @@
     "html-webpack-plugin": "^2.24.0",
     "jest": "^19.0.2",
     "npm-run-all": "^4.0.2",
+    "preload-webpack-plugin": "^1.2.0",
     "react-addons-test-utils": "^15.3.2",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
@@ -88,7 +91,8 @@
   "homepage": "https://baberu.tv/",
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
+      "src/**/*.{js,jsx}",
+      "!src/client.jsx"
     ],
     "coverageDirectory": "<rootDir>/coverage",
     "moduleFileExtensions": [
