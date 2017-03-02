@@ -1,7 +1,7 @@
 FROM node:6.10.0
 
 ENV PATH /root/.yarn/bin:${PATH}
-ENV YARN_VERSION 0.20.3
+ENV YARN_VERSION 0.21.3
 
 RUN \
   curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version ${YARN_VERSION}

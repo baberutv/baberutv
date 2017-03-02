@@ -3,7 +3,7 @@ jobs:
   build:
     environment:
       PATH: /root/.yarn/bin:/usr/local/bin:/usr/bin:/bin
-      YARN_VERSION: 0.20.3
+      YARN_VERSION: 0.21.3
     docker:
       - image: node:6.10.0
     working_directory: ~/baberutv
