@@ -14,7 +14,11 @@ COPY ./package.json ./yarn.lock /app/
 RUN yarn
 
 COPY . /app/
-RUN yarn build -- --env production
+RUN \
+  yarn build -- --env production && \
+  rm -rf ./node_modules && \
+  yarn --production && \
+  rm -rf $(yarn cache dir)
 
 EXPOSE 8080
 CMD ["yarn", "start"]
