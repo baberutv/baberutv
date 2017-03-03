@@ -18,8 +18,8 @@ BaberuTVはTVです。TVとはつまりTelevisionの略です。つまり遠隔�
 Dockerがインストールされている環境であれば、どのような環境でも動作します。
 
 ```shell
-$ docker build -t baberutv .
-$ docker run -d -p 8080:8080 baberutv
+$ docker pull baberutv/baberutv:latest
+$ docker run -d -p 8080:8080 baberutv:baberutv:latest
 $ open http://localhost:8080/
 ```
 
