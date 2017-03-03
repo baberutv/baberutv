@@ -1,3 +1,0 @@
-.player[aria-hidden]:not([aria-hidden="false"]) {
-  display: none;
-}

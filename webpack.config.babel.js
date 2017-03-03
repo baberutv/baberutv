@@ -18,7 +18,6 @@ const babelrc = {
   },
   plugins: [
     'syntax-dynamic-import',
-    'transform-decorators-legacy',
     'transform-class-properties',
     'transform-react-jsx',
   ],
@@ -58,13 +57,6 @@ const clientConfig = {
             babelrc: false,
           }, babelrc),
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'isomorphic-style-loader',
-          'css-loader',
-        ],
       },
       {
         test: /\.hbs$/,

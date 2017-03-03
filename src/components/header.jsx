@@ -1,3 +1,4 @@
+import { createStyleSheet } from 'jss-theme-reactor/styleSheet';
 import AppBar from 'material-ui/AppBar';
 import Button from 'material-ui/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
@@ -6,23 +7,31 @@ import Text from 'material-ui/Text';
 import TextField from 'material-ui/TextField';
 import ToolBar from 'material-ui/Toolbar';
 import MenuIcon from 'material-ui/svg-icons/menu';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import React, { Component, PropTypes } from 'react';
 
-export default class Header extends Component {
-  static displayName = 'Header';
+const styleSheet = createStyleSheet('Header', () => ({
+  title: {
+    flex: 1,
+  },
+}));
 
+export default class Header extends Component {
   static contextTypes = {
     setVideo: PropTypes.func.isRequired,
-  };
-
-  static propTypes = {
-    open: PropTypes.bool,
-    videoUri: PropTypes.string,
+    styleManager: customPropTypes.muiRequired,
   };
 
   static defaultProps = {
     open: false,
     videoUri: null,
+  };
+
+  static displayName = 'Header';
+
+  static propTypes = {
+    open: PropTypes.bool,
+    videoUri: PropTypes.string,
   };
 
   constructor(props, ...args) {
@@ -84,6 +93,7 @@ export default class Header extends Component {
   }
 
   render() {
+    const classes = this.context.styleManager.render(styleSheet);
     return (
       <header>
         <AppBar>
@@ -91,7 +101,7 @@ export default class Header extends Component {
             <IconButton contrast>
               <MenuIcon onClick={this.handleClick} />
             </IconButton>
-            <Text className="main-title" colorInherit type="title">TV</Text>
+            <Text className={classes.title} colorInherit type="title">TV</Text>
             <Button contrast onClick={this.handleClick} primary>Open</Button>
             <Dialog onRequestClose={this.handleRequestClose} open={this.state.open}>
               <form action="/" onSubmit={this.handleSubmit}>

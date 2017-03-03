@@ -1,29 +1,26 @@
-import provideContext from 'context-provider/lib/provideContext';
-import mount from 'enzyme/mount';
-import React, { PropTypes } from 'react';
+import shallow from 'enzyme/shallow';
+import React from 'react';
 import Player from '../../src/components/player';
 
-@provideContext({
-  insertCss: PropTypes.func.isRequired,
-  setVideo: PropTypes.func.isRequired,
-})
-class MockPlayer extends Player {
-}
-
-function insertCss() {}
-function setVideo() {}
+const context = {
+  styleManager: {
+    render: () => ({
+      player: 'player',
+    }),
+  },
+};
 
 test('mount', () => {
-  const player = mount(<MockPlayer context={{ insertCss, setVideo }} />);
+  const player = shallow(<Player />, { context });
   expect(player.find('.player').length).toBe(1);
 });
 
 test('aria-hidden=true', () => {
-  const player = mount(<MockPlayer context={{ insertCss, setVideo }} />);
+  const player = shallow(<Player />, { context });
   expect(player.find('.player[aria-hidden]').length).toBe(1);
 });
 
 test('aria-hidden=false', () => {
-  const player = mount(<MockPlayer context={{ insertCss, setVideo }} src="https://example.com/index.m3u8" />);
+  const player = shallow(<Player src="https://example.com/index.m3u8" />, { context });
   expect(player.find('.player[aria-hidden=false]').length).toBe(1);
 });

@@ -1,24 +1,39 @@
 import Hls from 'hls.js';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { createStyleSheet } from 'jss-theme-reactor/styleSheet';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import React, { Component, PropTypes } from 'react';
 import database from '../databases/media';
-import styles from '../styles/video.css';
 
-@withStyles(styles)
+const styleSheet = createStyleSheet('Video', () => ({
+  container: {
+    backgroundColor: '#000',
+    margin: 0,
+  },
+  video: {
+    display: 'block',
+    height: 'auto',
+    margin: '0 auto',
+    maxWidth: '100%',
+    padding: '90px 0 20px',
+    width: '1280px',
+  },
+}));
+
 export default class Video extends Component {
-  static displayName = 'Video';
-
   static contextTypes = {
     setVideo: PropTypes.func.isRequired,
-  };
-
-  static propTypes = {
-    src: PropTypes.string,
+    styleManager: customPropTypes.muiRequired,
   };
 
   static defaultProps = {
     src: null,
-  }
+  };
+
+  static displayName = 'Video';
+
+  static propTypes = {
+    src: PropTypes.string,
+  };
 
   constructor(...args) {
     super(...args);
@@ -97,10 +112,12 @@ export default class Video extends Component {
   }
 
   render() {
+    const classes = this.context.styleManager.render(styleSheet);
     return (
-      <div className="video">
+      <div className={classes.container}>
         <video
           autoPlay
+          className={classes.video}
           controls
           onCanPlay={this.handleCanPlay}
           ref={component => (this.videoElement = component)}
