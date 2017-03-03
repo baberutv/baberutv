@@ -1,8 +1,5 @@
-import provideContext from 'context-provider/lib/provideContext';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import React, { Component, PropTypes } from 'react';
 import URLSearchParams from 'url-search-params';
-import styles from '../styles/app.css';
 import Header from './header';
 import Player from './player';
 
@@ -13,15 +10,7 @@ function getQueryString() {
   return (location.search || '?').slice(1);
 }
 
-@provideContext({
-  insertCss: PropTypes.func.isRequired,
-})
-@withStyles(styles)
 export default class Main extends Component {
-  static contextTypes = {
-    insertCss: PropTypes.func.isRequired,
-  };
-
   static childContextTypes = {
     setVideo: PropTypes.func.isRequired,
   };
