@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function insertCss(...styles) {
   // eslint-disable-next-line no-underscore-dangle
@@ -24,7 +25,11 @@ async function main() {
   const container = document.getElementById('root');
   const { default: App } = await import('./app');
   try {
-    await render(<App context={{ insertCss }} />, container);
+    await render((
+      <Router>
+        <App context={{ insertCss }} />
+      </Router>
+    ), container);
   } catch (error) {
     console.error(error); // eslint-disable-line no-console
   }

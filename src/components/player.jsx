@@ -1,40 +1,57 @@
-import { createStyleSheet } from 'jss-theme-reactor/styleSheet';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import React, { Component, PropTypes } from 'react';
+import URLSearchParams from 'url-search-params';
 import Video from './video';
-
-const styleSheet = createStyleSheet('Player', () => ({
-  player: {
-    '&[aria-hidden]:not([aria-hidden="false"])': {
-      display: 'none',
-    },
-  },
-}));
 
 export default class Player extends Component {
   static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  static defaultProps = {
-    src: null,
-  };
+    setVideo: PropTypes.func.isRequired,
+  }
 
   static displayName = 'Player';
 
   static propTypes = {
-    src: PropTypes.string,
+    location: PropTypes.shape({
+      search: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
+  constructor(props, ...args) {
+    super(props, ...args);
+    const { search } = props.location;
+    const searchParams = new URLSearchParams(search);
+    Object.assign(this.state, {
+      src: searchParams.get('uri') || null,
+    });
+  }
+
+  state = {
+    src: null,
+  };
+
+  componentWillMount() {
+    const { src: videoUri } = this.state;
+    if (videoUri) {
+      this.context.setVideo({ uri: videoUri });
+    }
+  }
+
   shouldComponentUpdate(nextProps) {
-    return this.props.src !== nextProps.src;
+    return this.props.location.search !== nextProps.location.search;
+  }
+
+  componentWillUpdate(nextProps) {
+    const { search } = nextProps.location;
+    const searchParams = new URLSearchParams(search);
+    const videoUri = searchParams.get('uri');
+    if (videoUri && this.state.src !== videoUri) {
+      this.setState({ src: videoUri });
+    }
   }
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
     return (
-      <div aria-hidden={!this.props.src} className={classes.player}>
-        <Video src={this.props.src} />
+      <div data-video-uri={this.state.src || false}>
+        <Video src={this.state.src} />
       </div>
     );
   }
