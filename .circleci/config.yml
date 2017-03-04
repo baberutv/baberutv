@@ -35,8 +35,11 @@ jobs:
             - ~/.cache/yarn
             - ./node_modules
       - run:
+          name: Pre-Test
+          command: yarn lint
+      - run:
           name: Run Tests
-          command: yarn test
+          command: yarn test-only
       - run:
           name: Post-Test
           command: cat ./coverage/lcov.info | $(yarn bin)/coveralls || echo "1"
