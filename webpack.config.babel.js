@@ -84,7 +84,6 @@ const clientConfig = {
       template: path.join(__dirname, 'src', 'templates', 'index.hbs'),
       title: process.env.BABERU_TV_SITE_NAME || `${pkg.name} (v${pkg.version})`,
     }),
-    new PreloadPlugin(),
     new EnvironmentPlugin([
       'NODE_ENV',
     ]),
@@ -117,6 +116,7 @@ export default (env = process.env.NODE_ENV) => {
           filename: '[name].[chunkhash].js',
         },
         plugins: [
+          new PreloadPlugin(),
           new OccurrenceOrderPlugin(),
           new BabiliPlugin(),
         ],
