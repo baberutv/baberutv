@@ -9,15 +9,23 @@ import ToolBar from 'material-ui/Toolbar';
 import MenuIcon from 'material-ui/svg-icons/menu';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router-dom';
 
 const styleSheet = createStyleSheet('Header', () => ({
   title: {
     flex: 1,
   },
+  titleLink: {
+    color: 'inherit',
+    textDecoration: 'none',
+  },
 }));
 
 export default class Header extends Component {
   static contextTypes = {
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
     setVideo: PropTypes.func.isRequired,
     styleManager: customPropTypes.muiRequired,
   };
@@ -58,7 +66,11 @@ export default class Header extends Component {
 
   componentWillUpdate(nextProps) {
     if (nextProps.videoUri && this.props.videoUri !== nextProps.videoUri) {
-      this.setState({ open: false });
+      const newState = { open: false };
+      if (this.state.videoUri !== nextProps.videoUri) {
+        newState.videoUri = nextProps.videoUri;
+      }
+      this.setState(newState);
     }
   }
 
@@ -85,10 +97,14 @@ export default class Header extends Component {
   }
 
   handleSubmit = (event) => {
+    const { videoUri } = this.state;
     event.preventDefault();
-    this.context.setVideo({
-      uri: this.state.videoUri,
-    });
+    if (videoUri) {
+      this.setState({ open: false }, () => {
+        this.context.setVideo({ uri: videoUri })
+          .then(() => this.context.history.push(`/player/?uri=${videoUri}`));
+      });
+    }
     return false;
   }
 
@@ -101,7 +117,9 @@ export default class Header extends Component {
             <IconButton contrast>
               <MenuIcon onClick={this.handleClick} />
             </IconButton>
-            <Text className={classes.title} colorInherit type="title">TV</Text>
+            <Text className={classes.title} colorInherit type="title">
+              <Link className={classes.titleLink} to="/">TV</Link>
+            </Text>
             <Button contrast onClick={this.handleClick} primary>Open</Button>
             <Dialog onRequestClose={this.handleRequestClose} open={this.state.open}>
               <form action="/" onSubmit={this.handleSubmit}>

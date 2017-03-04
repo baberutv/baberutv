@@ -19,6 +19,7 @@ const babelrc = {
   plugins: [
     'syntax-dynamic-import',
     'transform-class-properties',
+    'transform-object-rest-spread',
     'transform-react-jsx',
   ],
   presets: [
@@ -37,6 +38,18 @@ const babelrc = {
       },
     ],
   ],
+};
+
+const htmlTemplateOptions = {
+  minify: {
+    collapseBooleanAttributes: true,
+    collapseWhitespace: true,
+    removeAttributeQuotes: true,
+    removeOptionalTags: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true,
+  },
+  template: path.join(__dirname, 'src', 'templates', 'index.hbs'),
 };
 
 const clientConfig = {
@@ -73,16 +86,13 @@ const clientConfig = {
   },
   plugins: [
     new HtmlPluign({
-      minify: {
-        collapseBooleanAttributes: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true,
-        removeOptionalTags: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-      },
-      template: path.join(__dirname, 'src', 'templates', 'index.hbs'),
+      ...htmlTemplateOptions,
       title: process.env.BABERU_TV_SITE_NAME || `${pkg.name} (v${pkg.version})`,
+    }),
+    new HtmlPluign({
+      ...htmlTemplateOptions,
+      filename: 'player/index.html',
+      title: `player - ${process.env.BABERU_TV_SITE_NAME || `${pkg.name} (v${pkg.version})`}`,
     }),
     new EnvironmentPlugin([
       'NODE_ENV',

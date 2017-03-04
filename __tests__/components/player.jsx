@@ -3,24 +3,15 @@ import React from 'react';
 import Player from '../../src/components/player';
 
 const context = {
-  styleManager: {
-    render: () => ({
-      player: 'player',
-    }),
-  },
+  setVideo() {},
 };
 
 test('mount', () => {
-  const player = shallow(<Player />, { context });
-  expect(player.find('.player').length).toBe(1);
+  const player = shallow(<Player location={{ search: '' }} />, { context });
+  expect(player.find('div').length).toBe(1);
 });
 
-test('aria-hidden=true', () => {
-  const player = shallow(<Player />, { context });
-  expect(player.find('.player[aria-hidden]').length).toBe(1);
-});
-
-test('aria-hidden=false', () => {
-  const player = shallow(<Player src="https://example.com/index.m3u8" />, { context });
-  expect(player.find('.player[aria-hidden=false]').length).toBe(1);
+test('have search', () => {
+  const player = shallow(<Player location={{ search: 'https://example.com/index.m3u8' }} />, { context });
+  expect(player.find('div').length).toBe(1);
 });

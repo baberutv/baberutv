@@ -1,14 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import URLSearchParams from 'url-search-params';
+import { Route } from 'react-router-dom';
+import Loader from './loader';
 import Header from './header';
-import Player from './player';
-
-function getQueryString() {
-  if (typeof location === 'undefined') {
-    return '';
-  }
-  return (location.search || '?').slice(1);
-}
 
 export default class Main extends Component {
   static childContextTypes = {
@@ -28,67 +21,17 @@ export default class Main extends Component {
     };
   }
 
-  componentWillMount() {
-    const queryString = getQueryString();
-    const searchParams = new URLSearchParams(queryString);
-    const videoUri = searchParams.get('uri');
-    if (videoUri) {
-      this.setState({ videoUri });
-    } else {
-      this.setState({
-        open: true,
-      });
-    }
-  }
-
-  componentDidMount() {
-    window.addEventListener('popstate', this.handlePopState);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.state.open !== nextState.open ||
-      this.state.videoUri !== nextState.videoUri
-    );
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    const { open, videoUri } = nextState;
-    if (this.state.videoUri !== videoUri) {
-      if (videoUri && open) {
-        this.setState({
-          open: false,
-        });
-      }
-      const currentUri = location.pathname + location.search;
-      const uri = `/${videoUri ? `?uri=${encodeURIComponent(videoUri)}` : ''}`;
-      if (currentUri !== uri) {
-        history.pushState({ videoUri }, document.title, uri);
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('popstate', this.handlePopState);
-  }
-
-  setVideo = ({ uri }) => {
-    this.setState({
-      videoUri: uri,
-    });
-  }
-
-  handlePopState = ({ state }) => {
-    const { videoUri = '' } = state || {};
-    this.setState({ videoUri });
-  }
+  setVideo = async ({ uri }) => new Promise((resolve) => {
+    this.setState({ videoUri: uri }, resolve);
+  })
 
   render() {
     return (
       <div>
-        <Header videoUri={this.state.videoUri} />
+        <Header open={this.state.open} videoUri={this.state.videoUri} />
         <main>
-          <Player src={this.state.videoUri} />
+          <Route exact path="/" render={props => <Loader name="home" {...props} />} />
+          <Route path="/player/" render={props => <Loader name="player" {...props} />} />
         </main>
       </div>
     );
