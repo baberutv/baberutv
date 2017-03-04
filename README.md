@@ -2,17 +2,6 @@
 
 BaberuTVはTVです。TVとはつまりTelevisionの略です。つまり遠隔の映像を受信して流す機器を指します。BaberuTVではウェブブラウザーを用いて、どのような環境からでも別の場所に存在する動画の再生を行えるアプリケーションです。
 
-不具合の報告や機能要望がありましたら、[Code of Conduct](/CODE_OF_CONDUCT.md)を読んだ上で[CONTRIBUTING.md](/CONTRIBUTING.md)をご参照ください。
-
-## 対応しているウェブブラウザー
-
-- [Google Chrome](https://www.google.com/chrome/browser/desktop/)
-- [Firefox](https://www.mozilla.org/ja/firefox/new/)
-- [Safari](http://www.apple.com/jp/safari/)
-- [Microsoft Edge](https://www.microsoft.com/ja-jp/windows/microsoft-edge)
-
-対応コストの都合上、いずれも最新のバージョンでしか動作の検証を行っていません。少しでも古い環境では動作しないおそれがあります。ですが個人開発である都合上そうしたコストをかける余力はなく、対応は難しい状況です。あらかじめご容赦ください。
-
 ## 使いかた
 
 Dockerがインストールされている環境であれば、どのような環境でも動作します。
@@ -23,9 +12,22 @@ $ docker run -d -p 8080:8080 baberutv:baberutv:latest
 $ open http://localhost:8080/
 ```
 
-また[`baberu.tv`](https://baberu.tv/)で最新のリリースバージョンのものが公開されています。
+また[`https://baberu.tv/`](https://baberu.tv/)で最新のリリースバージョンのものが公開されています。
 
 「URI」と書かれている欄にHLS形式の動画のURIを入力して、「Play」ボタンを押すと動画の再生が始まります。
+
+## 対応しているウェブブラウザー
+
+- [Google Chrome](https://www.google.com/chrome/browser/desktop/)
+- [Firefox](https://www.mozilla.org/ja/firefox/new/)
+- [Safari](http://www.apple.com/jp/safari/)
+- [Microsoft Edge](https://www.microsoft.com/ja-jp/windows/microsoft-edge)
+
+対応コストの都合上、いずれも最新のバージョンでしか動作の検証を行っていません。少しでも古い環境では動作しないおそれがあります。ですが個人開発である都合上そうしたコストをかける余力はなく、対応は難しい状況です。あらかじめご容赦ください。
+
+## コントリビュート
+
+不具合の報告や機能要望がありましたら、[Code of Conduct](/CODE_OF_CONDUCT.md)を読んだ上で[CONTRIBUTING.md](/CONTRIBUTING.md)をご参照ください。
 
 ## ライセンス
 
