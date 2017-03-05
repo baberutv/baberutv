@@ -56,7 +56,6 @@
     "babili-webpack-plugin": "^0.0.11",
     "copy-webpack-plugin": "^4.0.0",
     "coveralls": "^2.11.16",
-    "css-loader": "^0.26.0",
     "enzyme": "^2.5.1",
     "eslint": "^3.8.1",
     "eslint-config-airbnb": "^14.0.0",
