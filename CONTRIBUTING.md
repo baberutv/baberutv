@@ -6,6 +6,17 @@ BaberuTVでは不具合の報告や機能要望は常に歓迎しています。
 
 ## 開発環境構築
 
+### ソースコードの取得
+
+ソースコードは[GitHub](https://github.com/baberutv/baberutv)で管理されています。[Git](https://git-scm.com/)を使ってリポジトリーからコードの取得を行ってください。
+
+```shell
+$ git clone https://github.com/baberutv/baberutv.git
+$ cd ./baberutv
+```
+
+### Docker Composeを使う
+
 開発環境の構築には[Docker Compose](https://docs.docker.com/compose/)を使うことを強く推奨します。[Docker](https://www.docker.com/)とDocker Composeがインストールされていれば、あとはインターネット環境さえあれば既存の環境に大きな影響を与えずに開発環境の構築が行えます。
 
 ```shell
@@ -15,6 +26,17 @@ $ docker-compose up
 というコマンドを実行すると`8080`版ポートで[`webpack-dev-server`](https://webpack.js.org/configuration/dev-server/)が起動します。
 
 `webpack-dev-server`が起動している状態でコードに変更を加えると、変更が反映された上でウェブブラウザーで開かれている場合は、そちらでも自動的に更新がされます。
+
+### Docker Composeを使わない場合
+
+CPUが対応していないといった理由でDockerが使えないかたもいるでしょう。必須なのは[Node.js](https://nodejs.org/ja/)と[Yarn](https://yarnpkg.com/en/)のふたつだけです。これらのものがインストールされている環境であればGNU/LinuxやmacOS、Windows、そのほかの環境であっても開発が行えるようになっているはずです。
+
+```shell
+$ yarn
+$ yarn dev
+```
+
+一度 開発用のサーバーを起動させるとDocker Composeを使う場合と同じく、コードに変更がある度に自動でサーバーの再起動がされます。
 
 ## コードフォーマット
 
