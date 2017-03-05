@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: baberutv-yarn-{{ .Branch }}
+          key: baberutv-yarn-<< .Branch >>
       - run:
           name: Install Yarn
           command: |
@@ -21,16 +21,16 @@ jobs:
               echo "The correct version of Yarn is already installed."
             fi
       - save_cache:
-          key: baberutv-yarn-{{ .Branch }}
+          key: baberutv-yarn-<< .Branch >>
           paths:
             - ~/.yarn
       - restore_cache:
-          key: baberutv-dependencies-{{ checksum "yarn.lock" }}
+          key: baberutv-dependencies-<< checksum "yarn.lock" >>
       - run:
           name: Install Dependencies
           command: yarn
       - save_cache:
-          key: baberutv-dependencies-{{ checksum "yarn.lock" }}
+          key: baberutv-dependencies-<< checksum "yarn.lock" >>
           paths:
             - ~/.cache/yarn
             - ./node_modules
