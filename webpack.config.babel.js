@@ -6,6 +6,7 @@ import PreloadPlugin from 'preload-webpack-plugin';
 import EnvironmentPlugin from 'webpack/lib/EnvironmentPlugin';
 import OccurrenceOrderPlugin from 'webpack/lib/optimize/OccurrenceOrderPlugin';
 import merge from 'webpack-merge';
+import SubResourceIntegrityPlugin from 'webpack-subresource-integrity';
 import pkg from './package.json';
 
 const babelrc = {
@@ -127,6 +128,9 @@ export default (env = process.env.NODE_ENV) => {
         },
         plugins: [
           new PreloadPlugin(),
+          new SubResourceIntegrityPlugin({
+            hashFuncNames: ['sha512'],
+          }),
           new OccurrenceOrderPlugin(),
           new BabiliPlugin(),
         ],
