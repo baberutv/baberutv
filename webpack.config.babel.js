@@ -124,11 +124,13 @@ export default (env = process.env.NODE_ENV) => {
       return merge(clientConfig, {
         output: {
           chunkFilename: 'chunk.[id].[chunkhash].js',
+          crossOriginLoading: false,
           filename: '[name].[chunkhash].js',
         },
         plugins: [
           new PreloadPlugin(),
           new SubResourceIntegrityPlugin({
+            enabled: false,
             hashFuncNames: ['sha512'],
           }),
           new OccurrenceOrderPlugin(),
