@@ -27,7 +27,7 @@ $ open http://localhost:8080/
 
 ## コントリビュート
 
-不具合の報告や機能要望がありましたら、[Code of Conduct](/CODE_OF_CONDUCT.md)を読んだ上で[CONTRIBUTING.md](/CONTRIBUTING.md)をご参照ください。
+不具合の報告や機能要望がありましたら[行動規範](/CODE_OF_CONDUCT.md)をご確認の上、[コントリビュートガイド](/CONTRIBUTING.md)を参照してください。
 
 ## ライセンス
 
