@@ -132,7 +132,9 @@ export default (env = process.env.NODE_ENV) => {
             hashFuncNames: ['sha512'],
           }),
           new OccurrenceOrderPlugin(),
-          new BabiliPlugin(),
+          new BabiliPlugin({
+            builtIns: false,
+          }),
         ],
       });
     default:
