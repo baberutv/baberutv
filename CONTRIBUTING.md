@@ -58,4 +58,4 @@ $ docker-compose run --rm webpack yarn test-only
 
 ## Pull Request
 
-[Pull Request](https://github.com/baberutv/baberutv/pulls)についてはあらかじめIssueの作成を行ってからにしてもらえると助かります。これは作業の無用な競合が起こってしまわないようにしたいためです。ただし小さな誤入力などの修正といった細かな修正についてはわざわざIssueを作らずに直接Pull Requestを作るような形でも問題ありません。
+[Pull Request](https://github.com/baberutv/baberutv/pulls)についてはあらかじめIssueの作成を行ってからにしてもらえると助かります。これは作業の無用な競合が起こってしまわないようにしたいためです。ただし小さな誤字脱字などの修正といった細かな修正についてはわざわざIssueを作らずに直接Pull Requestを作るような形でも問題ありません。
