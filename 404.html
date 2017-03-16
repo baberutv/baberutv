@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<meta charset=UTF-8>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #333;
+  font-family: sans-serif;
+}
+
+header {
+  left: 0;
+  margin: 0;
+  padding: 0 0 2rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 101;
+}
+
+header h1 {
+  background-color: rgba(255, 255, 255, .8);
+  color: #666;
+  font-size: 1.5rem;
+  line-height: 1;
+  margin: 0;
+  padding: .5em 1em;
+  text-align: center;
+}
+
+header h1 a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+main {
+  margin-top: 3rem;
+}
+
+.http-status {
+  margin: 0;
+  padding: 0;
+}
+
+.status-code,
+.reason-phrase {
+  color: #ccc;
+  margin: 0;
+  line-height: 1;
+  text-align: center;
+  padding: 0
+}
+
+.status-code {
+  font-size: 20rem;
+}
+
+.reason-phrase {
+  font-size: 1.5rem;
+}
+</style>
+<title>404 Not Found</title>
+<header>
+  <h1>
+    <a href=/ title="back to top page">TV</a>
+  </h1>
+</header>
+<main>
+  <section class=http-status>
+    <h2 class=status-code>404</h2>
+    <p class=reason-phrase>Not Found</p>
+  </section>
+</main>
