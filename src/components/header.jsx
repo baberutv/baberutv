@@ -23,9 +23,11 @@ const styleSheet = createStyleSheet('Header', () => ({
 
 export default class Header extends Component {
   static contextTypes = {
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-    }).isRequired,
+    router: PropTypes.shape({
+      history: PropTypes.shape({
+        push: PropTypes.func.isRequired,
+      }).isRequired,
+    }),
     setVideo: PropTypes.func.isRequired,
     styleManager: customPropTypes.muiRequired,
   };
@@ -102,7 +104,10 @@ export default class Header extends Component {
     if (videoUri) {
       this.setState({ open: false }, () => {
         this.context.setVideo({ uri: videoUri })
-          .then(() => this.context.history.push(`/player/?uri=${videoUri}`));
+          .then(() => {
+            const { history } = this.context.router;
+            history.push(`/player/?uri=${videoUri}`);
+          });
       });
     }
     return false;
