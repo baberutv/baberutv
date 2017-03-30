@@ -6,8 +6,8 @@ import IconButton from 'material-ui/IconButton';
 import Text from 'material-ui/Text';
 import TextField from 'material-ui/TextField';
 import ToolBar from 'material-ui/Toolbar';
-import MenuIcon from 'material-ui/svg-icons/menu';
 import customPropTypes from 'material-ui/utils/customPropTypes';
+import MenuIcon from 'material-ui-icons/Menu';
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 
