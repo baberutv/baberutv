@@ -1,5 +1,5 @@
-import shallow from 'enzyme/shallow';
 import React from 'react';
+import ReactShallowRenderer from 'react-test-renderer/shallow';
 import Player from '../../src/components/player';
 
 const context = {
@@ -7,11 +7,16 @@ const context = {
 };
 
 test('mount', () => {
-  const player = shallow(<Player location={{ search: '' }} />, { context });
-  expect(player.find('div').length).toBe(1);
+  const renderer = new ReactShallowRenderer();
+  const result = renderer.render(<Player location={{ search: '' }} />, context);
+  expect(result.type).toBe('div');
 });
 
 test('have search', () => {
-  const player = shallow(<Player location={{ search: 'https://example.com/index.m3u8' }} />, { context });
-  expect(player.find('div').length).toBe(1);
+  const renderer = new ReactShallowRenderer();
+  const result = renderer.render(
+    <Player location={{ search: 'https://example.com/index.m3u8' }} />,
+    context,
+  );
+  expect(result.type).toBe('div');
 });
