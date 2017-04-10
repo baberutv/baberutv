@@ -1,7 +1,8 @@
 import Hls from 'hls.js';
 import { createStyleSheet } from 'jss-theme-reactor/styleSheet';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import database from '../databases/media';
 
 const styleSheet = createStyleSheet('Video', () => ({

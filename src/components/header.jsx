@@ -8,7 +8,8 @@ import TextField from 'material-ui/TextField';
 import ToolBar from 'material-ui/Toolbar';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import MenuIcon from 'material-ui-icons/Menu';
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 const styleSheet = createStyleSheet('Header', () => ({
